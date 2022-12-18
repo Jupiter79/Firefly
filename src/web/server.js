@@ -26,15 +26,13 @@ var subdomains = {};
 var subdomainFiles = fs.readdirSync(__dirname + "/subdomains");
 
 subdomainFiles.forEach(subdomain => {
-    subdomains[subdomain] = require(`${__dirname}/subdomains/${subdomain}/index.js`);
+    subdomains[subdomain] = require(`${__dirname}/subdomains/${subdomain}/index.js`)();
 })
 
 app.use((req, res, next) => {
     var subdomainText = req.subdomains[0] ?? "root";
 
     var subdomain = subdomains[subdomainText];
-
-    console.log(subdomain);
 
     if (subdomain) {
         subdomain(req, res, next)
