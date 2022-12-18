@@ -4,7 +4,7 @@ module.exports = {
     init: (req, res) => {
 
         console.log(req.method);
-        res.send("GIT PUSH RECEIVED!");
+        res.send("GIT PUSH RECEIVEDd!");
 
         console.log(req.body);
     }
