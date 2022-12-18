@@ -29,7 +29,7 @@ subdomainFiles.forEach(subdomain => {
     subdomains[subdomain] = require(`${__dirname}/subdomains/${subdomain}/index.js`);
 })
 
-app.use("/", (req, res, next) => {
+app.use((req, res, next) => {
     var subdomain = req.subdomains[0] ?? "root";
 
     subdomain = subdomains[subdomain];
