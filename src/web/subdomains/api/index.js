@@ -10,7 +10,7 @@ routeFiles.forEach(routePath => {
     routes[route.path] = { method: route.method, init: route.init, }
 });
 
-module.exports = () => {
+module.exports = function() {
     var router = express.Router();
 
     router.use((req, res, next) => {
