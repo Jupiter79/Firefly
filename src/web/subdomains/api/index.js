@@ -13,10 +13,6 @@ routeFiles.forEach(routePath => {
 module.exports = () => {
     var router = express.Router();
 
-    router.use((req, res, next) => {
-        console.log(req.path)
-    });
-
     router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" }))
 
     router.use("/", (req, res, next) => {
