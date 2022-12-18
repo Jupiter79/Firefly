@@ -12,24 +12,18 @@ module.exports = () => {
         routes[route.path] = { method: route.method, init: route.init, }
     });
 
-    router.use("/", (req, res, next) => {
-        if (req.path == "/") {
-            res.json({ status: 200, msg: "Welcome to the Firefly API!" });
-        }
-        else if (routes[req.path]) {
-            next();
-        }
-        else {
-            res.json({ status: 404, msg: "Not found" });
-        }
-    })
+    router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" });)
 
     router.use("/", (req, res) => {
         var route = routes[req.path];
         var method = req.method;
 
-        if (route.method == method) {
+        if (route && route.method == method) {
             route.init(req, res)
-        }
+        } else next();
+    });
+
+    router.use("/", (req, res) => {
+        res.json({ status: 404, msg: "Not found!" });
     })
 }
