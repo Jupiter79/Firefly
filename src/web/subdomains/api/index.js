@@ -7,7 +7,7 @@ module.exports.handle = (req, res) => {
     routeFiles.forEach(routePath => {
         var route = require(__dirname + "/routes/" + routePath);
 
-        routes[route.path] = route.init();
+        routes[route.path] = route.init;
     });
 
     console.log(routes);
