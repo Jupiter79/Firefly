@@ -19,8 +19,6 @@ module.exports = () => {
         var route = routes[req.path];
         var method = req.method;
 
-        console.log(method);
-        console.log(route.method);
         if (route && route.method == method) {
             route.init(req, res)
             console.log("SOMETHING RECEIVED!");
