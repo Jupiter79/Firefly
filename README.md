@@ -39,4 +39,7 @@ BOT_TOKEN=""
 # Website
 WEB_SSL_PRIVKEY=""
 WEB_SSL_CERT=""
+
+# Github
+GITHUB_WEBHOOK_SECRET=""
 ```
