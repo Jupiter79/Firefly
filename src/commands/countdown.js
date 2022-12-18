@@ -61,7 +61,6 @@ module.exports = {
         var inputDate = interaction.options.getString("date")?.split(".");
 
         if (inputDate) {
-
             var date = new Date(inputDate[2], inputDate[1] - 1, inputDate[0]);
 
             if (!date) return await interaction.reply({ content: `Invalid date entered! Please use the following format: \`DD.MM.YYYY\``, ephemeral: true })
