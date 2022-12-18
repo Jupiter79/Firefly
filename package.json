@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js",
+    "deploy_commands": "node src/scripts/deploy_commands.js",
+    "delete_all_commands": "node src/scripts/delete_all_commands.js"
   },
   "author": "",
   "license": "ISC",
