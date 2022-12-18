@@ -29,10 +29,14 @@ subdomainFiles.forEach(subdomain => {
 
 console.log(subdomains);
 
-app.use("/", (req) => {
+app.use("/", (req, res) => {
     var subdomain = req.subdomains[0] ?? "root";
 
+    console.log(req.subdomains[0]);
+
     subdomain = subdomains[subdomain];
+
+    console.log(subdomain)
 
     if (subdomain) {
         subdomain.handle(req, res);
