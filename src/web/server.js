@@ -27,16 +27,16 @@ subdomainFiles.forEach(subdomain => {
     subdomains.push({ [subdomain]: require(`${__dirname}/subdomains/${subdomain}/index.js`) });
 })
 
-console.log(subdomains);
+console.log("2" + subdomains);
 
 app.use("/", (req, res) => {
     var subdomain = req.subdomains[0] ?? "root";
 
-    console.log(req.subdomains[0]);
+    console.log("1" + req.subdomains[0]);
 
     subdomain = subdomains[subdomain];
 
-    console.log(subdomain)
+    console.log("3" + subdomain)
 
     if (subdomain) {
         subdomain.handle(req, res);
