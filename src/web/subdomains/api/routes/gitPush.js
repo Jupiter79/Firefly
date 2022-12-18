@@ -1,6 +1,6 @@
 module.exports = {
     path: "/git/push",
-    method: "GET",
+    method: "POST",
     init: (req, res) => {
 
         console.log(req.method);
