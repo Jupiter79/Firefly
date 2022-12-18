@@ -1,5 +1,5 @@
 module.exports = {
-    route: "/git/push",
+    path: "/git/push",
     init: (data) => {
         console.log()
     }
