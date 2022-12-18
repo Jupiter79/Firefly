@@ -1,5 +1,6 @@
 module.exports = {
     path: "/git/push",
+    method: "POST",
     init: (req, res) => {
         res.send("GIT PUSH RECEIVED!");
 

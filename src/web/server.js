@@ -29,12 +29,12 @@ subdomainFiles.forEach(subdomain => {
     subdomains[subdomain] = require(`${__dirname}/subdomains/${subdomain}/index.js`);
 })
 
-app.use("/", (req, res) => {
+app.use("/", (req, res, next) => {
     var subdomain = req.subdomains[0] ?? "root";
 
     subdomain = subdomains[subdomain];
 
     if (subdomain) {
-        subdomain.handle(req, res);
+        subdomain(req, res, next)
     } else res.send("404 not found!");
 })
