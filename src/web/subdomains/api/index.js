@@ -19,9 +19,6 @@ module.exports = () => {
         var route = routes[req.path];
         var method = req.method;
 
-        console.log(req.path)
-        console.log(req.method);
-
         if (route && route.method == method) {
 
             route.init(req, res)
