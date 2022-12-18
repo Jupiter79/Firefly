@@ -1,19 +1,19 @@
+const fs = require('fs');
+var express = require('express');
 
+var routeFiles = fs.readdirSync(__dirname + "/routes");
+var routes = {};
+
+routeFiles.forEach(routePath => {
+    var route = require(__dirname + "/routes/" + routePath);
+
+    routes[route.path] = { method: route.method, init: route.init, }
+});
 
 module.exports = () => {
-    const fs = require('fs');
-    var express = require('express');
-
-    var routeFiles = fs.readdirSync(__dirname + "/routes");
-    var routes = {};
-
-    routeFiles.forEach(routePath => {
-        var route = require(__dirname + "/routes/" + routePath);
-
-        routes[route.path] = { method: route.method, init: route.init, }
-    });
-    
     var router = express.Router();
+
+    router.use((req, res) => console.log(req.path));
 
     router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" }))
 
