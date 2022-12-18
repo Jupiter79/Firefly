@@ -18,6 +18,7 @@ module.exports = {
         )
         .setDMPermission(false),
     async execute(interaction) {
+        console.log("Working!");
         var type = interaction.options.getString("type");
 
         if (type != "yesno") {
