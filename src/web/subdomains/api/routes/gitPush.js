@@ -3,9 +3,8 @@ module.exports = {
     method: "POST",
     init: (req, res) => {
 
-        console.log(req.method);
-        res.send("GIT PUSH RECEIVED!");
+        console.log(req.headers);
 
-        console.log(req.body);
+        res.json({code: 200, msg: "OK"});
     }
 }
