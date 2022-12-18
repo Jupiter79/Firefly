@@ -20,19 +20,15 @@ if (process.env.NODE_ENV != "development") {
     httpsServer.listen(443);
 } else httpServer.listen(81);
 
-var subdomains = [];
+var subdomains = {};
 var subdomainFiles = fs.readdirSync(__dirname + "/subdomains");
 
 subdomainFiles.forEach(subdomain => {
-    subdomains.push({ [subdomain]: require(`${__dirname}/subdomains/${subdomain}/index.js`) });
+    subdomains[subdomain] = require(`${__dirname}/subdomains/${subdomain}/index.js`);
 })
-
-console.log("2" + subdomains);
 
 app.use("/", (req, res) => {
     var subdomain = req.subdomains[0] ?? "root";
-
-    console.log("1" + req.subdomains[0]);
 
     subdomain = subdomains[subdomain];
 
