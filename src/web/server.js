@@ -37,7 +37,6 @@ app.use((req, res, next) => {
     console.log(subdomain);
 
     if (subdomain) {
-        console.log("EXECUTE FUCKING SUBDOMAIN!");
         subdomain(req, res, next)
     } else res.send("404 not found!");
 })
