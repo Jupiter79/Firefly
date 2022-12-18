@@ -34,6 +34,8 @@ app.use((req, res, next) => {
 
     var subdomain = subdomains[subdomainText];
 
+    console.log(subdomain);
+
     if (subdomain) {
         subdomain(req, res, next)
     } else res.send("404 not found!");
