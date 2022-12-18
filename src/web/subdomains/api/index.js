@@ -16,4 +16,7 @@ module.exports.handle = (req, res) => {
     else if (routes[req.path]) {
         routes[req.path].init(req, res);
     }
+    else {
+        res.json({status: 404, msg: "Not found"});
+    }
 }
