@@ -5,6 +5,8 @@ var https = require('https');
 var express = require('express');
 var app = express();
 
+app.use(express.json());
+
 var httpServer = http.createServer(app);
 
 if (process.env.NODE_ENV != "development") {
