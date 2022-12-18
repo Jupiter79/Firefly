@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 var validate_secret = (signature, payload) => {
-    var hmac = crypto.createHmac('sha1', config.github.secret);
+    var hmac = crypto.createHmac('sha1', process.env.GITHUB_WEBHOOK_SECRET);
     hmac.update(JSON.stringify(payload));
     var calculatedSignature = 'sha1=' + hmac.digest('hex');
 
