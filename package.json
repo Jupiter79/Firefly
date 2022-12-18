@@ -5,13 +5,15 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
-    "deploy_commands": "node src/scripts/deploy_commands.js",
-    "delete_all_commands": "node src/scripts/delete_all_commands.js"
+    "dev": "set NODE_ENV=development&&npm start",
+    "commands_update": "node src/scripts/deploy_commands.js",
+    "commands_delete": "node src/scripts/delete_all_commands.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   }
 }
