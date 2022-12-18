@@ -35,7 +35,7 @@ app.use("/", (req, res, next) => {
     subdomain = subdomains[subdomain];
 
     console.log(subdomain == undefined);
-    console.log(subdomains);
+    console.log(subdomains[subdomain]);
 
     if (subdomain) {
         subdomain(req, res, next)
