@@ -12,9 +12,9 @@ module.exports = () => {
         routes[route.path] = { method: route.method, init: route.init, }
     });
 
-    router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" });)
+    router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" }))
 
-    router.use("/", (req, res) => {
+    router.use("/", (req, res, next) => {
         var route = routes[req.path];
         var method = req.method;
 
