@@ -15,6 +15,8 @@ module.exports = {
         if (validate_secret(req.headers["x-hub-signature"], req.body)) {
             res.json({ code: 200, msg: "OK" });
 
+            console.log("Test")
+
             process.exit(1);
         } else res.json({code: 400, msg: "Not authorized"});
     }
