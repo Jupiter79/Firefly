@@ -23,7 +23,7 @@ module.exports = () => {
             route.init(req, res)
             console.log("SOMETHING RECEIVED!");
         } else next();
-    });
+    })
 
     router.use("/", (req, res) => {
         res.json({ status: 404, msg: "Not found!" });
