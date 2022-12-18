@@ -6,11 +6,14 @@ module.exports.handle = (req, res) => {
 
     routeFiles.forEach(routePath => {
         var route = require(__dirname + "/routes/" + routePath);
-        
+
         routes[route.path] = route.init();
     });
 
-    console.log(req.path);
-
-    res.send("WELCOME TO THE API");
+    if (req.path == "/") {
+        res.sendJson({ status: 200, msg: "Welcome to the Firefly API!" });
+    }
+    else if (routes[req.path]) {
+        routes[req.path].init(req, res);
+    }
 }

@@ -1,6 +1,6 @@
 module.exports = {
     path: "/git/push",
-    init: (data) => {
-        console.log()
+    init: (req, res) => {
+        console.log("Working!")
     }
 }
