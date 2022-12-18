@@ -1,6 +1,5 @@
 const fs = require('fs');
 var express = require('express');
-var router = express.Router();
 
 var routeFiles = fs.readdirSync(__dirname + "/routes");
 var routes = {};
@@ -12,6 +11,8 @@ routeFiles.forEach(routePath => {
 });
 
 module.exports = () => {
+    var router = express.Router();
+
     router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" }))
 
     router.use("/", (req, res, next) => {
