@@ -16,8 +16,7 @@ module.exports = {
         if (validate_secret(req.headers["x-hub-signature"], req.body) && req.body.ref == "refs/heads/main") {
             res.json({ code: 200, msg: "OK" });
 
-            exec("git pull");
-            process.exit(1);
+            exec("git pull && pm2 restart Firefly");
         } else res.json({code: 400, msg: "Not authorized"});
     }
 }
