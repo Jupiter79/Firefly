@@ -21,6 +21,7 @@ module.exports = () => {
 
         if (route && route.method == method) {
             route.init(req, res)
+            console.log("SOMETHING RECEIVED!");
         } else next();
     });
 
