@@ -10,7 +10,7 @@ module.exports.handle = (req, res) => {
         routes[route.path] = route.init();
     });
 
-    console.log(res.path);
+    console.log(req.path);
 
     res.send("WELCOME TO THE API");
 }
