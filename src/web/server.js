@@ -19,3 +19,22 @@ if (process.env.NODE_ENV != "development") {
 
     httpsServer.listen(443);
 } else httpServer.listen(81);
+
+var subdomains = [];
+var subdomainFiles = fs.readdirSync(__dirname + "/subdomains");
+
+subdomainFiles.forEach(subdomain => {
+    subdomains.push({ [subdomain]: require(`${__dirname}/subdomains/${subdomain}/index.js`) });
+})
+
+console.log(subdomains);
+
+app.use("/", (...args) => {
+    var subdomain = req.subdomains[0] ?? "root";
+
+    subdomain = subdomains[subdomain];
+
+    if (subdomain) {
+        subdomain.handle(...args);
+    } else res.send("404 not found!");
+})
