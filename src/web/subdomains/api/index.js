@@ -16,7 +16,7 @@ module.exports.handle = (req, res) => {
         res.json({ status: 200, msg: "Welcome to the Firefly API!" });
     }
     else if (routes[req.path]) {
-        routes[req.path].init(req, res);
+        routes[req.path](req, res);
     }
     else {
         res.json({status: 404, msg: "Not found"});
