@@ -11,7 +11,7 @@ module.exports.handle = (req, res) => {
     });
 
     if (req.path == "/") {
-        res.sendJson({ status: 200, msg: "Welcome to the Firefly API!" });
+        res.json({ status: 200, msg: "Welcome to the Firefly API!" });
     }
     else if (routes[req.path]) {
         routes[req.path].init(req, res);
