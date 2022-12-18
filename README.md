@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-git clone https://github.com/FireflyBot/Firefly
+git clone https://github.com/Jupiter79/Firefly
 cd Firefly
 npm install
 ```
