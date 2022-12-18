@@ -29,12 +29,12 @@ subdomainFiles.forEach(subdomain => {
 
 console.log(subdomains);
 
-app.use("/", (...args) => {
+app.use("/", (req) => {
     var subdomain = req.subdomains[0] ?? "root";
 
     subdomain = subdomains[subdomain];
 
     if (subdomain) {
-        subdomain.handle(...args);
+        subdomain.handle(req, res);
     } else res.send("404 not found!");
 })
