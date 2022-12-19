@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage, registerFont } = require('canvas');
+const fetch = require("node-fetch");
 
 const CONFIG = {
     width: 1000,
@@ -62,7 +63,7 @@ async function makeQuote(author, text, image) {
         var nextbreak = text.lastIndexOf(" ", breakat + CONFIG.text.charactersperline);
         var length = nextbreak - breakat;
 
-        ctx.fillText(`${i == 0 ? '"' : ''}${text.substr(i == 0 ? 0 : breakat, i == (lines-1) ? text.length : length)}${i == lines - 1 ? '"' : ''}`, CONFIG.width / 2, (image ? CONFIG.height / 3 * 2 : CONFIG.height / 5 * 3) + i * CONFIG.text.lineheight - totalHeight / 2);
+        ctx.fillText(`${i == 0 ? '"' : ''}${text.substr(i == 0 ? 0 : breakat, i == (lines - 1) ? text.length : length)}${i == lines - 1 ? '"' : ''}`, CONFIG.width / 2, (image ? CONFIG.height / 3 * 2 : CONFIG.height / 5 * 3) + i * CONFIG.text.lineheight - totalHeight / 2);
     }
 
     return canvas.toBuffer();
@@ -115,7 +116,10 @@ module.exports = {
                         .setDescription("The URL of the image you want to use for this quote")
                 )
         )
-    ,
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName("random")
+                .setDescription("Generates a random quote")),
     async execute(interaction) {
         var subcommand = interaction.options.getSubcommand();
 
@@ -141,6 +145,18 @@ module.exports = {
             const attachment = new AttachmentBuilder(quote, { name: 'quote.png' })
 
             await interaction.reply({ files: [attachment] })
+        } else if (subcommand == "random") {
+            var response = await fetch("https://api.quotable.io/random");
+            var body = await response.json();
+
+  
+            if (body.authorSlug) {
+                var quote = await makeQuote(body.author, body.content, `https://images.quotable.dev/profile/200/${body.authorSlug}.jpg`);
+
+                const attachment = new AttachmentBuilder(quote, { name: 'quote.png' })
+
+                await interaction.reply({ files: [attachment] })
+            } else await interaction.reply("Error something went wrong!");
         }
     },
 };

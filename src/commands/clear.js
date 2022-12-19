@@ -12,7 +12,7 @@ module.exports = {
                 .setMaxValue(100)
                 .setRequired(true)
         )
-        .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
         .setDMPermission(false),
     async execute(interaction) {
         var channel = interaction.channel;
