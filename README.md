@@ -20,12 +20,12 @@ npm run start
 
 ### Update Commands
 ```
-npm run deploy_commands
+npm run commands_update
 ```
 
 ### Reset/Delete Commands
 ```
-npm run delete_all_commands
+npm run commands_delete
 ```
 
 ---
