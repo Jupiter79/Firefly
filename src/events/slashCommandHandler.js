@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Events } = require('discord.js');
+const { Events } = require('discord.js');
 
 module.exports = {
     event: Events.InteractionCreate,
