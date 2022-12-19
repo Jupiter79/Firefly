@@ -58,7 +58,11 @@ async function makeQuote(author, text, image) {
     var totalHeight = (lines - 2) * CONFIG.text.lineheight;
 
     for (var i = 0; i < lines; i++) {
-        ctx.fillText(`${i == 0 ? '"' : ''}${text.substr(i * CONFIG.text.charactersperline, CONFIG.text.charactersperline)}${i == lines - 1 ? '"' : ''}`, CONFIG.width / 2, (image ? CONFIG.height / 3 * 2 : CONFIG.height / 5 * 3) + i * CONFIG.text.lineheight - totalHeight / 2);
+        var breakat = text.lastIndexOf(" ", i * CONFIG.text.charactersperline);
+        var nextbreak = text.lastIndexOf(" ", breakat + CONFIG.text.charactersperline);
+        var length = nextbreak - breakat;
+
+        ctx.fillText(`${i == 0 ? '"' : ''}${text.substr(i == 0 ? 0 : breakat, i == (lines-1) ? text.length : length)}${i == lines - 1 ? '"' : ''}`, CONFIG.width / 2, (image ? CONFIG.height / 3 * 2 : CONFIG.height / 5 * 3) + i * CONFIG.text.lineheight - totalHeight / 2);
     }
 
     return canvas.toBuffer();
