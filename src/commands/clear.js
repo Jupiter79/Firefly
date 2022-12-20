@@ -21,7 +21,7 @@ module.exports = {
         channel.bulkDelete(amount)
             .then(async messages => {
                 await interaction
-                    .reply({ content: `Cleared ${messages.size} ${messages.size == 1 ? "message" : "messages"}!`, ephemeral: true })
+                    .reply(`Cleared ${messages.size} ${messages.size == 1 ? "message" : "messages"}! :bomb:`)
                     .then(x => setTimeout(() => interaction.deleteReply(), 3000));
             })
             .catch(err => interaction.reply({ content: "The messages are older than 14 days, thus they cannot be deleted", ephemeral: true }))
