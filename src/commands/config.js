@@ -50,6 +50,9 @@ module.exports = {
                                     de: "kanal"
                                 })
                                 .setDescription("The channel in which new users should be greeted")
+                                .setDescriptionLocalizations({
+                                    de: "Der Kanal, in dem neue User begrüßt werden sollen"
+                                })
                                 .addChannelTypes(ChannelType.GuildText)
                         )
                 )
