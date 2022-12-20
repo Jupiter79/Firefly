@@ -16,13 +16,13 @@ module.exports = {
                 .addChannelOption(option =>
                     option
                         .setName("channel")
-                        .setDescription("The channel in which new users should be greeted")
+                        .setDescription("DEFINE a welcome channel")
                         .addChannelTypes(ChannelType.GuildText)
                 )
                 .addBooleanOption(option =>
                     option
                         .setName("delete")
-                        .setDescription("Delete the current welcome-channel")
+                        .setDescription("DELETE the current welcome channel (if defined)")
                 )
         ),
     async execute(interaction) {
