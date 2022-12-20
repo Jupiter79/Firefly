@@ -22,7 +22,7 @@ module.exports = {
                 .addBooleanOption(option =>
                     option
                         .setName("delete")
-                        .setDescription("Should the welcome channel be deleted?")
+                        .setDescription("Delete the current welcome-channel")
                 )
         ),
     async execute(interaction) {
