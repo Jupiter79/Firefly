@@ -42,9 +42,10 @@ module.exports = {
                 await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: channel.id } });
                 await interaction.reply(`The welcome-channel has been successfully set to ${channel.toString()}`)
             } else if (_delete) {
-                if (!guild?.welcome_channel) return await interaction.reply({ content: `${channel.toString()} hasn't been defined as a welcome-channel yet!` });
+                if (!guild?.welcome_channel) return await interaction.reply({ content: "There hasn't been defined a welcome-channel yet!", ephemeral: true });
 
                 await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: null } });
+                await interaction.reply("The welcome-channel has been successfully deleted!");
             } else {
                 if (!guild?.welcome_channel) return await interaction.reply("There's no defined welcome channel")
 
