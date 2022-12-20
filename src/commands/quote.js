@@ -84,6 +84,9 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName("user")
+                .setNameLocalizations({
+                    de: "benutzer"
+                })
                 .setDescription("Generates a quote from a Discord user")
                 .setDescriptionLocalizations({
                     de: "Erstellt ein Zitat von einem Discord-Benutzer"
