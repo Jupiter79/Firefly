@@ -9,6 +9,7 @@ if (process.env.NODE_ENV != "development") intents.push(GatewayIntentBits.GuildM
 
 const client = new Client({ intents: intents });
 
+require("./lang/index.js");
 require("./web/index.js");
 
 client.events = new Collection();

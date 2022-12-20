@@ -4,10 +4,19 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('coinflip')
         .setDescription('Flip a coin')
+        .setDescriptionLocalizations({
+            de: "Werfe eine Münze"
+        })
         .addUserOption(option =>
             option
                 .setName("opponent")
+                .setNameLocalizations({
+                    de: "gegner"
+                })
                 .setDescription("The user who you want to play against")
+                .setDescriptionLocalizations({
+                    de: "Der Gegner, gegen den du spielen möchtest"
+                })
         ),
     async execute(interaction) {
         var initiator = interaction.user;
@@ -17,25 +26,25 @@ module.exports = {
 
         if (!opponent) {
             var embed = new EmbedBuilder()
-                .setTitle("CoinFlip")
+                .setTitle("Coin Flip")
                 .setColor(0xf2ba00)
-                .addFields({ name: "Result", value: boolean ? "Heads" : "Tails" })
+                .addFields({ name: interaction.translation.result, value: boolean ? interaction.translation.heads : interaction.translation.tails })
 
             await interaction.reply({ embeds: [embed] });
         } else {
-            if (initiator == opponent) return interaction.reply({content: "You can't play against yourself!", ephemeral: true});
+            if (initiator == opponent) return interaction.reply({ content: interaction.translation.error, ephemeral: true });
 
             var embed = new EmbedBuilder()
-                .setTitle("CoinFlip")
+                .setTitle("Coin Flip")
                 .setColor(0xf2ba00)
                 .addFields(
                     {
-                        name: "Players",
-                        value: `${initiator.toString()} (Heads) vs ${opponent.toString()} (Tails)`
+                        name: interaction.translation.players,
+                        value: `${initiator.toString()} (${interaction.translation.heads}) vs ${opponent.toString()} (${interaction.translation.tails})`
                     },
                     {
-                        name: "Winner",
-                        value: boolean ? `${initiator.toString()} (Heads)` : `${opponent.toString()} (Tails)`
+                        name: interaction.translation.winner,
+                        value: boolean ? `${initiator.toString()} (${interaction.translation.heads})` : `${opponent.toString()} (${interaction.translation.tails})`
                     }
                 )
                 .setThumbnail(boolean ? initiator.displayAvatarURL() : opponent.displayAvatarURL())

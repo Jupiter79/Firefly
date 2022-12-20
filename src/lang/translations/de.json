@@ -1,0 +1,43 @@
+{
+    "clear": {
+        "error": "Nachrichten, die älter als 14 Tage sind, können nicht gelöscht werden"
+    },
+    "coinflip": {
+        "result": "Ergebnis",
+        "heads": "Kopf",
+        "tails": "Zahl",
+        "players": "Spieler",
+        "winner": "Gewinner",
+        "error": "Du kannst nicht gegen dich selbst spielen"
+    },
+    "config": {
+        "no_defined": "Es wurde noch kein Willkommens-Kanal festgelegt",
+        "current_channel": "Der aktuelle Willkommens-Kanal ist: %channel%",
+        "already_defined": "Das ist bereits der Willkommens-Kanal",
+        "success_set": "Der Willkommens-Kanal ist nun %channel%",
+        "success_reset": "Der Willkommens-Kanal wurde erfolgreich zurückgesetzt!"
+    },
+    "countdown": {
+        "invalid_date": "Ungültiges Datum! Bitte im folgenden Format angeben: `DD.MM.YYYY`",
+        "error_future": "Bitte gebe ein Datum in der Zukunft an",
+        "defined_date": "Festgelegtes Datum",
+        "remaining_time": "Verbleibende Zeit",
+        "events": {
+            "christmas": "🎄 Weihnachten",
+            "newyear": "🎆 Neujahr",
+            "valentine": "💝 Valentinstag",
+            "birthday_firefly": "Geburtstag von Firefly"
+        },
+        "default_countdowns": "Standard Countdowns",
+        "today": "`Heute`"
+    },
+    "quote": {
+        "valid_formats": "Es werden nur die folgenden Formate unterstützt: %formats%",
+        "error_fetch_image": "Das Bild konnte nicht gefunden werden",
+        "filename": "zitat",
+        "error": "Irgend etwas ist schiefgelaufen!"
+    },
+    "random": {
+        "answer": "Die Antwort ist: %answer%"
+    }
+}

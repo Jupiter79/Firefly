@@ -13,10 +13,18 @@ const checkGuildExists = async (guild) => {
     })
 }
 
+const getUsedLanguage = (interaction) => {
+    var usedLanguage = interaction.locale;
+
+    return global.LANGUAGES.list.includes(usedLanguage) ? global.LANGUAGES[usedLanguage] : global.LANGUAGES["default"];
+}
+
 module.exports = {
     event: Events.InteractionCreate,
     async handle(interaction) {
         if (!interaction.isChatInputCommand()) return;
+
+        interaction.translation = getUsedLanguage(interaction)[interaction.commandName];
 
         const command = interaction.client.commands.get(interaction.commandName);
 

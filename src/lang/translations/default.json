@@ -1,0 +1,43 @@
+{
+    "clear": {
+        "error": "The messages are older than 14 days, thus they cannot be deleted"
+    },
+    "coinflip": {
+        "result": "Result",
+        "heads": "Heads",
+        "tails": "Tails",
+        "players": "Players",
+        "winner": "Winner",
+        "error": "You can't play against yourself"
+    },
+    "config": {
+        "no_defined": "There's no defined welcome channel",
+        "current_channel": "The current welcome-channel is %channel%",
+        "already_defined": "This is already the welcome channel!",
+        "success_set": "The welcome-channel has been successfully set to %channel%",
+        "success_reset": "The welcome-channel has been successfully resetted!"
+    },
+    "countdown": {
+        "invalid_date": "Invalid date entered! Please use the following format: `DD.MM.YYYY`",
+        "error_future": "Please enter a date in the future",
+        "defined_date": "Defined date",
+        "remaining_time": "Time",
+        "events": {
+            "christmas": "🎄 Christmas",
+            "newyear": "🎆 New Year",
+            "valentine": "💝 Valentine's day",
+            "birthday_firefly": "Firefly Birthday"
+        },
+        "default_countdowns": "Default Countdowns",
+        "today": "`Today`"
+    },
+    "quote": {
+        "valid_formats": "Only %formats% image links are valid!",
+        "error_fetch_image": "Cannot get image!",
+        "filename": "quote",
+        "error": "Error something went wrong!"
+    },
+    "random": {
+        "answer": "The answer is: %answer%"
+    }
+}
