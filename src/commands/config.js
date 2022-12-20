@@ -30,7 +30,7 @@ module.exports = {
 
         if (subcommand == "welcome") {
             var channel = interaction.options.getChannel("channel");
-            var _delete = interaction.options.getBooleanOption("delete");
+            var _delete = interaction.options.getBoolean("delete");
 
             var guild = await prisma.guild.findUnique({
                 where: { id: interaction.guild.id }
