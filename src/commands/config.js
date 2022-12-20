@@ -12,7 +12,7 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName("welcome")
-                .setDescription("Set a welcome channel in which new users will be greeted")
+                .setDescription("Define a welcome-channel in which new users should be greeted")
                 .addChannelOption(option =>
                     option
                         .setName("channel")
