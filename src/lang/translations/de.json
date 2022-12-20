@@ -1,0 +1,12 @@
+{
+    "clear": {
+        "error": "Nachrichten, die älter als 14 Tage sind, können nicht gelöscht werden"
+    },
+    "coinflip": {
+        "result": "Ergebnis",
+        "heads": "Kopf",
+        "tails": "Zahl",
+        "players": "Spieler",
+        "winner": "Gewinner"
+    }
+}

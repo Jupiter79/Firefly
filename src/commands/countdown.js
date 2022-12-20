@@ -53,37 +53,52 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('countdown')
         .setDescription('Shows the remaining time until a specific date')
+        .setDescriptionLocalizations({
+            de: "Zeigt dir verbleinde Zeit zu gewissen Ereignissen an"
+        })
         .addStringOption(option =>
             option
                 .setName("date")
-                .setDescription("The date of which you want to see the remaining time")),
+                .setNameLocalizations({
+                    de: "datum"
+                })
+                .setDescription("The date of which you want to see the remaining time")
+                .setDescriptionLocalizations({
+                    de: "Das Datum, bis zu dem die verbleibende Zeit angezeigt werden soll"
+                })
+        ),
     async execute(interaction) {
         var inputDate = interaction.options.getString("date")?.split(".");
 
         if (inputDate) {
             var date = new Date(inputDate[2], inputDate[1] - 1, inputDate[0]);
 
-            if (!(date instanceof Date && !isNaN(date))) return await interaction.reply({ content: `Invalid date entered! Please use the following format: \`DD.MM.YYYY\``, ephemeral: true })
+            if (!(date instanceof Date && !isNaN(date))) return await interaction.reply({ content: interaction.translation.invalid_date, ephemeral: true })
 
             date = getTimeUntil(date);
 
-            if (date == false) return await interaction.reply({ content: "Please enter a date in the future", ephemeral: true });
+            if (date == false) return await interaction.reply({ content: interaction.translation.error_future, ephemeral: true });
 
             var embed = new EmbedBuilder()
                 .setTitle("Countdown")
                 .setColor(0xffffff)
                 .setTimestamp()
                 .addFields(
-                    { name: "Defined date", value: `\`${date[1]}\`` },
-                    { name: "Time", value: `\`${date[0].join(", ")}\`` }
+                    { name: interaction.translation.defined_date, value: `\`${date[1]}\`` },
+                    { name: interaction.translation.remaining_time, value: `\`${date[0].join(", ")}\`` }
                 )
 
             await interaction.reply({ embeds: [embed] });
         } else {
-            var dates = [["🎄 Christmas", getNext(24, 12)], ["🎆 New Year", getNext(1, 1)], ["💝 Valentine's day", getNext(14, 2)], ["<:Cliffford:787949474143141888> Cliffford Birthday", getNext(28, 3)]];
+            var dates = [
+                [interaction.translation.events.christmas, getNext(24, 12)],
+                [interaction.translation.events.newyear, getNext(1, 1)],
+                [interaction.translation.events.valentine, getNext(14, 2)],
+                [interaction.translation.events.birthday_firefly, getNext(13, 11)]
+            ];
 
             var embed = new EmbedBuilder()
-                .setTitle("Default Countdowns")
+                .setTitle(interaction.translation.default_countdowns)
                 .setColor(0xffffff)
                 .setTimestamp()
 
@@ -96,7 +111,7 @@ module.exports = {
                 var time = getTimeUntil(date[1]);
                 if (time[0] != null) {
                     embed.addFields({ name: `${date[0]} (${time[1]})`, value: `\`${time[0].join(", ")}\`` })
-                } else embed.addFields({ name: `${date[0]} (${time[1]})`, value: `\`Today\`` });
+                } else embed.addFields({ name: `${date[0]} (${time[1]})`, value: interaction.translation.today });
             })
 
             await interaction.reply({ embeds: [embed] });

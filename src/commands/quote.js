@@ -75,20 +75,32 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('quote')
         .setDescription('Generates a image with a quote')
+        .setDescriptionLocalizations({
+            de: "Erstellt ein Bild von einem Zitat"
+        })
         .addSubcommand(subcommand =>
             subcommand
                 .setName("user")
                 .setDescription("Generates a quote from a Discord user")
+                .setDescriptionLocalizations({
+                    de: "Erstellt ein Zitat von einem Discord-Benutzer"
+                })
                 .addUserOption(option =>
                     option
                         .setName("user")
                         .setDescription("The author of the quote")
+                        .setDescriptionLocalizations({
+                            de: "Der Autor des Zitates"
+                        })
                         .setRequired(true)
                 )
                 .addStringOption(option =>
                     option
                         .setName("text")
                         .setDescription("The text of the quote")
+                        .setDescriptionLocalizations({
+                            de: "Der Text des Zitates"
+                        })
                         .setRequired(true)
                         .setMaxLength(CONFIG.text.maxchars)
                 )
@@ -97,10 +109,16 @@ module.exports = {
             subcommand
                 .setName("person")
                 .setDescription("Generates a quote from a real person")
+                .setDescriptionLocalizations({
+                    de: "Erstellt ein Zitat von einer echten Person"
+                })
                 .addStringOption(option =>
                     option
                         .setName("person")
                         .setDescription("The name of that person")
+                        .setDescriptionLocalizations({
+                            de: "Der Name der Person (z. B. Vor / Nachname)"
+                        })
                         .setMaxLength(30)
                         .setRequired(true)
                 )
@@ -108,18 +126,36 @@ module.exports = {
                     option
                         .setName("text")
                         .setDescription("The text of the quote")
+                        .setDescriptionLocalizations({
+                            de: "Der Text des Zitates"
+                        })
                         .setRequired(true)
                         .setMaxLength(CONFIG.text.maxchars)
                 )
                 .addStringOption(option =>
-                    option.setName("image")
+                    option
+                        .setName("image")
+                        .setNameLocalizations({
+                            de: "bild"
+                        })
                         .setDescription("The URL of the image you want to use for this quote")
+                        .setDescriptionLocalizations({
+                            de: "Ein Link zum Bild dieser Person"
+                        })
                 )
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName("random")
-                .setDescription("Generates a random quote")),
+                .setNameLocalizations({
+                    de: "zufällig"
+                })
+                .setDescription("Generates a random quote")
+                .setDescriptionLocalizations({
+                    de: "Erstellt ein zufälliges Zitat auf Englisch"
+                })
+        ),
+
     async execute(interaction) {
         var subcommand = interaction.options.getSubcommand();
 
@@ -128,7 +164,7 @@ module.exports = {
             var avatar = user.displayAvatarURL({ size: 2048, extension: "png" });
             var text = interaction.options.getString("text");
 
-            const attachment = new AttachmentBuilder(await makeQuote(user.tag, text, avatar), { name: 'quote.png' })
+            const attachment = new AttachmentBuilder(await makeQuote(user.tag, text, avatar), { name: interaction.translation.filename + '.png' })
 
             await interaction.reply({ files: [attachment] })
         } else if (subcommand == "person") {
@@ -136,13 +172,13 @@ module.exports = {
             var text = interaction.options.getString("text");
             var image = interaction.options.getString("image");
 
-            if (image && !VALID_URL.test(image)) return await interaction.reply({ content: "Only PNG, JPG and GIF image linsk are valid!", ephemeral: true });
+            if (image && !VALID_URL.test(image)) return await interaction.reply({ content: interaction.translation.valid_formats.replace("%formats%", "PNG, JPG, GIF, SVG"), ephemeral: true });
 
             var quote = await makeQuote(person, text, image);
 
-            if (!quote) return await interaction.reply({ content: "Cannot get image!", ephemeral: true });
+            if (!quote) return await interaction.reply({ content: interaction.translation.error_fetch_image, ephemeral: true });
 
-            const attachment = new AttachmentBuilder(quote, { name: 'quote.png' })
+            const attachment = new AttachmentBuilder(quote, { name: interaction.translation.filename + '.png' })
 
             await interaction.reply({ files: [attachment] })
         } else if (subcommand == "random") {
@@ -153,10 +189,10 @@ module.exports = {
             if (body.authorSlug) {
                 var quote = await makeQuote(body.author, body.content, `https://images.quotable.dev/profile/200/${body.authorSlug}.jpg`);
 
-                const attachment = new AttachmentBuilder(quote, { name: 'quote.png' })
+                const attachment = new AttachmentBuilder(quote, { name: interaction.translation.filename + '.png' })
 
                 await interaction.reply({ files: [attachment] })
-            } else await interaction.reply("Error something went wrong!");
+            } else await interaction.reply(interaction.translation.error);
         }
     },
 };
