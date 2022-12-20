@@ -74,6 +74,9 @@ const VALID_URL = /(https?:\/\/.*\.(?:png|jpg|gif|SVG))/i;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('quote')
+        .setNameLocalizations({
+            de: "zitat"
+        })
         .setDescription('Generates a image with a quote')
         .setDescriptionLocalizations({
             de: "Erstellt ein Bild von einem Zitat"
