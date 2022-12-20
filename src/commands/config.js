@@ -37,17 +37,14 @@ module.exports = {
             })
 
             if (channel) {
-                if (_delete) {
-                    if (!guild?.welcome_channel) return await interaction.reply({content: `${channel.toString()} hasn't been defined as a welcome-channel yet!`});
+                if (channel.id == guild.welcome_channel) return await interaction.reply({ content: "This is already the welcome channel!", ephemeral: true });
 
-                    await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: null } });
-                } else {
+                await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: channel.id } });
+                await interaction.reply(`The welcome-channel has been successfully set to ${channel.toString()}`)
+            } else if (_delete) {
+                if (!guild?.welcome_channel) return await interaction.reply({ content: `${channel.toString()} hasn't been defined as a welcome-channel yet!` });
 
-                    if (channel.id == guild.welcome_channel) return await interaction.reply({ content: "This is already the welcome channel!", ephemeral: true });
-
-                    await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: channel.id } });
-                    await interaction.reply(`The welcome-channel has been successfully set to ${channel.toString()}`)
-                }
+                await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: null } });
             } else {
                 if (!guild?.welcome_channel) return await interaction.reply("There's no defined welcome channel")
 
