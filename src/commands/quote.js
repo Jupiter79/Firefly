@@ -59,11 +59,11 @@ async function makeQuote(author, text, image) {
     var totalHeight = (lines - 2) * CONFIG.text.lineheight;
 
     for (var i = 0; i < lines; i++) {
-        var breakat = text.lastIndexOf(" ", i * CONFIG.text.charactersperline);
-        var nextbreak = text.lastIndexOf(" ", breakat + CONFIG.text.charactersperline);
-        var length = nextbreak - breakat;
+        var breakat = text.lastIndexOf(" ", (i + 1) * CONFIG.text.charactersperline) + 1;
 
-        ctx.fillText(`${i == 0 ? '"' : ''}${text.substr(i == 0 ? 0 : breakat, i == (lines - 1) ? text.length : length)}${i == lines - 1 ? '"' : ''}`, CONFIG.width / 2, (image ? CONFIG.height / 3 * 2 : CONFIG.height / 5 * 3) + i * CONFIG.text.lineheight - totalHeight / 2);
+        ctx.fillText(`${i == 0 ? '"' : ''}${text.substr(0, i == lines - 1 ? text.length : breakat)}${i == lines - 1 ? '"' : ''}`, CONFIG.width / 2, (image ? CONFIG.height / 3 * 2 : CONFIG.height / 5 * 3) + i * CONFIG.text.lineheight - totalHeight / 2);
+
+        text = text.substring(breakat);
     }
 
     return canvas.toBuffer();
@@ -149,7 +149,7 @@ module.exports = {
             var response = await fetch("https://api.quotable.io/random");
             var body = await response.json();
 
-  
+
             if (body.authorSlug) {
                 var quote = await makeQuote(body.author, body.content, `https://images.quotable.dev/profile/200/${body.authorSlug}.jpg`);
 
