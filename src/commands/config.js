@@ -19,22 +19,35 @@ module.exports = {
                         .setDescription("The channel in which new users should be greeted")
                         .addChannelTypes(ChannelType.GuildText)
                 )
+                .addBooleanOption(option =>
+                    option
+                        .setName("delete")
+                        .setDescription("Should the welcome channel be deleted?")
+                )
         ),
     async execute(interaction) {
         var subcommand = interaction.options.getSubcommand();
 
         if (subcommand == "welcome") {
             var channel = interaction.options.getChannel("channel");
+            var _delete = interaction.options.getBooleanOption("delete");
 
             var guild = await prisma.guild.findUnique({
                 where: { id: interaction.guild.id }
             })
 
             if (channel) {
-                if (channel.id == guild.welcome_channel) return await interaction.reply({ content: "This is already the welcome channel!", ephemeral: true });
+                if (_delete) {
+                    if (!guild?.welcome_channel) return await interaction.reply({content: `${channel.toString()} hasn't been defined as a welcome-channel yet!`});
 
-                await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: channel.id } });
-                await interaction.reply(`The welcome-channel has been successfully set to ${channel.toString()}`)
+                    await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: null } });
+                } else {
+
+                    if (channel.id == guild.welcome_channel) return await interaction.reply({ content: "This is already the welcome channel!", ephemeral: true });
+
+                    await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: channel.id } });
+                    await interaction.reply(`The welcome-channel has been successfully set to ${channel.toString()}`)
+                }
             } else {
                 if (!guild?.welcome_channel) return await interaction.reply("There's no defined welcome channel")
 
