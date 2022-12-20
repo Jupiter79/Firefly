@@ -1,0 +1,13 @@
+datasource db {
+    provider = "mysql"
+    url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Guild {
+    id String @id @db.VarChar(50)
+    welcome_channel String? @db.VarChar(50)
+}
