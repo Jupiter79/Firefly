@@ -1,25 +1,18 @@
 const { SlashCommandBuilder } = require('discord.js');
 
+const name = "random";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('random')
-        .setNameLocalizations({
-            de: "zufall"
-        })
+        .setName(name)
+        .setNameLocalizations(global.COMMAND_META[name].name)
         .setDescription('Sends a random thing of what you defined')
-        .setDescriptionLocalizations({
-            de: "Sendet dir eine zufällgige Sache aus, die ausgewählt werden kann"
-        })
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addStringOption(option =>
             option
                 .setName("type")
-                .setNameLocalizations({
-                    de: "typ"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].type)
                 .setDescription("The thing you want to randomize")
-                .setDescriptionLocalizations({
-                    de: "Die Sache, von der du ein zufälliges Element bekommen möchtest"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["type.description"])
                 .addChoices(
                     { name: "Random member of this server", value: "members" },
                     { name: "Random channel of this server", value: "channels" },

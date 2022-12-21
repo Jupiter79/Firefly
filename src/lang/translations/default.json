@@ -1,8 +1,12 @@
 {
+  "commands": {
     "clear": {
+      "content": {
         "error": "The messages are older than 14 days, thus they cannot be deleted"
+      }
     },
     "coinflip": {
+      "content": {
         "name": "Coin Flip",
         "result": "Result",
         "heads": "Heads",
@@ -10,35 +14,45 @@
         "players": "Players",
         "winner": "Winner",
         "error": "You can't play against yourself"
+      }
     },
     "config": {
+      "content": {
         "no_defined": "There's no defined welcome channel",
         "current_channel": "The current welcome-channel is %channel%",
         "already_defined": "This is already the welcome channel!",
         "success_set": "The welcome-channel has been successfully set to %channel%",
         "success_reset": "The welcome-channel has been successfully resetted!"
+      }
     },
     "countdown": {
+      "content": {
         "invalid_date": "Invalid date entered! Please use the following format: `DD.MM.YYYY`",
         "error_future": "Please enter a date in the future",
         "defined_date": "Defined date",
         "remaining_time": "Time",
         "events": {
-            "christmas": "🎄 Christmas",
-            "newyear": "🎆 New Year",
-            "valentine": "💝 Valentine's day",
-            "birthday_firefly": "Firefly Birthday"
+          "christmas": "🎄 Christmas",
+          "newyear": "🎆 New Year",
+          "valentine": "💝 Valentine's day",
+          "birthday_firefly": "Firefly Birthday"
         },
         "default_countdowns": "Default Countdowns",
         "today": "`Today`"
+      }
     },
     "quote": {
+      "content": {
         "valid_formats": "Only %formats% image links are valid!",
         "error_fetch_image": "Cannot get image!",
         "filename": "quote",
         "error": "Error something went wrong!"
+      }
     },
     "random": {
+      "content": {
         "answer": "The answer is: %answer%"
+      }
     }
+  }
 }

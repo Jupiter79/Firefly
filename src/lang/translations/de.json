@@ -1,8 +1,30 @@
 {
+  "commands": {
+    "avatar": {
+      "meta": {
+        "description": "Zeigt dir das Profilbild von einem Benutzer an",
+        "target": "Der Benutzer, von dem du das Profilbild sehen möchtest",
+        "extension": "dateiendung",
+        "extension.description": "Das Format, in dem du das Profilbild haben möchtest"
+      }
+    },
     "clear": {
+      "meta": {
+        "description": "Lösche Nachrichten aus einem Textkanal",
+        "amount": "anzahl",
+        "amount.description": "Die Anzahl der Nachrichten, die gelöscht werden sollen"
+      },
+      "content": {
         "error": "Nachrichten, die älter als 14 Tage sind, können nicht gelöscht werden"
+      }
     },
     "coinflip": {
+      "meta": {
+        "description": "Werfe eine Münze",
+        "opponent": "gegner",
+        "opponent.description": "Der Gegner, gegen den du spielen willst"
+      },
+      "content": {
         "name": "Münzwurf",
         "result": "Ergebnis",
         "heads": "Kopf",
@@ -10,35 +32,84 @@
         "players": "Spieler",
         "winner": "Gewinner",
         "error": "Du kannst nicht gegen dich selbst spielen"
+      }
     },
     "config": {
+      "meta": {
+        "description": "Passe die Bot-Einstellungen für diesen Server an",
+        "welcome": "willkommen",
+        "welcome.description": "Setze einen Willkommens-Kanal, indem neue Server-Mitglieder begrüßt werden",
+        "view": "anzeigen",
+        "view.description": "Zeigt den aktuellen Willkommens-Kanal an",
+        "define": "setzen",
+        "define.description": "Setze einen Willkommens-Kanal, in dem neue Server-Mitglieder begrüßt werden",
+        "channel": "kanal",
+        "channel.description": "Der Kanal, in dem neue Server-Mitglieder begrüßt werden sollen",
+        "reset": "zurücksetzen",
+        "reset.description": "Setzte den Willkommens-Kanal zurück, sodass keine neuen Server-Mitglieder begrüßt werden"
+      },
+      "content": {
         "no_defined": "Es wurde noch kein Willkommens-Kanal festgelegt",
         "current_channel": "Der aktuelle Willkommens-Kanal ist: %channel%",
         "already_defined": "Das ist bereits der Willkommens-Kanal",
         "success_set": "Der Willkommens-Kanal ist nun %channel%",
         "success_reset": "Der Willkommens-Kanal wurde erfolgreich zurückgesetzt!"
+      }
     },
     "countdown": {
+      "meta": {
+        "description": "Zeigt dir die verbleibende Zeit zu gewissen Ereignissen an",
+        "date": "datum",
+        "date.description": "Das Datum, bis zu dem die verbleibende Zeit angezeigt werden soll"
+      },
+      "content": {
         "invalid_date": "Ungültiges Datum! Bitte im folgenden Format angeben: `DD.MM.YYYY`",
         "error_future": "Bitte gebe ein Datum in der Zukunft an",
         "defined_date": "Festgelegtes Datum",
         "remaining_time": "Verbleibende Zeit",
         "events": {
-            "christmas": "🎄 Weihnachten",
-            "newyear": "🎆 Neujahr",
-            "valentine": "💝 Valentinstag",
-            "birthday_firefly": "Geburtstag von Firefly"
+          "christmas": "🎄 Weihnachten",
+          "newyear": "🎆 Neujahr",
+          "valentine": "💝 Valentinstag",
+          "birthday_firefly": "Geburtstag von Firefly"
         },
         "default_countdowns": "Standard Countdowns",
         "today": "`Heute`"
+      }
     },
     "quote": {
+      "meta": {
+        "name": "zitat",
+        "description": "Erstellt ein Bild von einem Zitat",
+        "user": "benutzer",
+        "user.description": "Erstelle ein Zitat von einem Discord-Benutzer",
+        "user.user.description": "Der Autor des Zitates",
+        "user.text.description": "Der Text des Zitates",
+        "person.description": "Erstellt ein Zitat von einer echten Person",
+        "person.person.description": "Der Name der Person (z. B. Vor und Nachname)",
+        "person.text.description": " Der Text des Zitates",
+        "person.image": "bild",
+        "person.image.description": " Ein Link zum Bild dieser Person",
+        "random": "zufällig",
+        "random.description": "Erstellt ein zufälliges Zitat auf Englisch"
+      },
+      "content": {
         "valid_formats": "Es werden nur die folgenden Formate unterstützt: %formats%",
         "error_fetch_image": "Das Bild konnte nicht gefunden werden",
         "filename": "zitat",
         "error": "Irgend etwas ist schiefgelaufen!"
+      }
     },
     "random": {
+      "meta": {
+        "name": "zufall",
+        "description": "Sendet eine zufällige Sache, die ausgewählt werden kann",
+        "type": "typ",
+        "type.description": "Die Sache, von der du ein zufälliges Element bekommen möchtest"
+      },
+      "content": {
         "answer": "Die Antwort ist: %answer%"
+      }
     }
+  }
 }

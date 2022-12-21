@@ -1,22 +1,17 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
+const name = "coinflip";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('coinflip')
+        .setName(name)
         .setDescription('Flip a coin')
-        .setDescriptionLocalizations({
-            de: "Werfe eine Münze"
-        })
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addUserOption(option =>
             option
                 .setName("opponent")
-                .setNameLocalizations({
-                    de: "gegner"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].opponent)
                 .setDescription("The user who you want to play against")
-                .setDescriptionLocalizations({
-                    de: "Der Gegner, gegen den du spielen möchtest"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["opponent.description"])
         ),
     async execute(interaction) {
         var initiator = interaction.user;

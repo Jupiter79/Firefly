@@ -3,69 +3,48 @@ const { SlashCommandBuilder, PermissionFlagsBits, ChannelType } = require('disco
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
 
+const name = "config";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('config')
-        .setDescription("Change the config for this server")
-        .setDescriptionLocalizations({
-            de: "Passe die Einstellungen für diesen Server an"
-        })
+        .setName(name)
+        .setDescription("Change the config of the bot for this server")
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDMPermission(false)
         .addSubcommandGroup(subcommandgroup =>
             subcommandgroup.
                 setName("welcome")
-                .setNameLocalizations({
-                    de: "willkommen"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].welcome)
                 .setDescription("Define a welcome-channel in which new users should be greeted")
-                .setDescriptionLocalizations({
-                    de: "Setze einen Willkommens-Channel, indem neue Benutzer gegrüßt werden"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["welcome.description"])
                 .addSubcommand(subcommand =>
                     subcommand
                         .setName("view")
-                        .setNameLocalizations({
-                            de: "anzeigen"
-                        })
+                        .setNameLocalizations(global.COMMAND_META[name].view)
                         .setDescription("Shows the current welcome channel")
-                        .setDescriptionLocalizations({
-                            de: "Zeit den aktuellen Willkommens-Channel an"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["view.description"])
                 )
                 .addSubcommand(subcommand =>
                     subcommand
                         .setName("define")
-                        .setNameLocalizations({
-                            de: "setzen"
-                        })
+                        .setNameLocalizations(global.COMMAND_META[name].define)
                         .setDescription("Define a channel in which new users should be greeted")
-                        .setDescriptionLocalizations({
-                            de: "Setze einen Willkommens-Channel, indem neue Benutzer gegrüßt werden"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["define.description"])
                         .addChannelOption(option =>
                             option
                                 .setName("channel")
-                                .setNameLocalizations({
-                                    de: "kanal"
-                                })
+                                .setNameLocalizations(global.COMMAND_META[name].channel)
                                 .setDescription("The channel in which new users should be greeted")
-                                .setDescriptionLocalizations({
-                                    de: "Der Kanal, in dem neue User begrüßt werden sollen"
-                                })
+                                .setDescriptionLocalizations(global.COMMAND_META[name]["channel.description"])
                                 .addChannelTypes(ChannelType.GuildText)
                         )
                 )
                 .addSubcommand(subcommand =>
                     subcommand
                         .setName("reset")
-                        .setNameLocalizations({
-                            de: "zurücksetzen"
-                        })
+                        .setNameLocalizations(global.COMMAND_META[name].reset)
                         .setDescription("Resets the welcome channel so new users won't be greeted anymore")
-                        .setDescriptionLocalizations({
-                            de: "Setzt den Willkommens-Channel zurück, sodass keine neuen User gegrüßt werden"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["reset.description"])
                 )
         ),
     async execute(interaction) {

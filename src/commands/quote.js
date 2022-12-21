@@ -71,42 +71,31 @@ async function makeQuote(author, text, image) {
 
 const VALID_URL = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
 
+const name = "quote";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('quote')
-        .setNameLocalizations({
-            de: "zitat"
-        })
+        .setName(name)
+        .setNameLocalizations(global.COMMAND_META[name].name)
         .setDescription('Generates a image with a quote')
-        .setDescriptionLocalizations({
-            de: "Erstellt ein Bild von einem Zitat"
-        })
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addSubcommand(subcommand =>
             subcommand
                 .setName("user")
-                .setNameLocalizations({
-                    de: "benutzer"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].user)
                 .setDescription("Generates a quote from a Discord user")
-                .setDescriptionLocalizations({
-                    de: "Erstellt ein Zitat von einem Discord-Benutzer"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["user.description"])
                 .addUserOption(option =>
                     option
                         .setName("user")
                         .setDescription("The author of the quote")
-                        .setDescriptionLocalizations({
-                            de: "Der Autor des Zitates"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["user.user.description"])
                         .setRequired(true)
                 )
                 .addStringOption(option =>
                     option
                         .setName("text")
                         .setDescription("The text of the quote")
-                        .setDescriptionLocalizations({
-                            de: "Der Text des Zitates"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["user.text.description"])
                         .setRequired(true)
                         .setMaxLength(CONFIG.text.maxchars)
                 )
@@ -115,16 +104,12 @@ module.exports = {
             subcommand
                 .setName("person")
                 .setDescription("Generates a quote from a real person")
-                .setDescriptionLocalizations({
-                    de: "Erstellt ein Zitat von einer echten Person"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["person.description"])
                 .addStringOption(option =>
                     option
                         .setName("person")
                         .setDescription("The name of that person")
-                        .setDescriptionLocalizations({
-                            de: "Der Name der Person (z. B. Vor / Nachname)"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["person.person.description"])
                         .setMaxLength(30)
                         .setRequired(true)
                 )
@@ -132,34 +117,24 @@ module.exports = {
                     option
                         .setName("text")
                         .setDescription("The text of the quote")
-                        .setDescriptionLocalizations({
-                            de: "Der Text des Zitates"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["person.text.description"])
                         .setRequired(true)
                         .setMaxLength(CONFIG.text.maxchars)
                 )
                 .addStringOption(option =>
                     option
                         .setName("image")
-                        .setNameLocalizations({
-                            de: "bild"
-                        })
+                        .setNameLocalizations(global.COMMAND_META[name]["person.image"])
                         .setDescription("The URL of the image you want to use for this quote")
-                        .setDescriptionLocalizations({
-                            de: "Ein Link zum Bild dieser Person"
-                        })
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["person.image.description"])
                 )
         )
         .addSubcommand(subcommand =>
             subcommand
                 .setName("random")
-                .setNameLocalizations({
-                    de: "zufällig"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].random)
                 .setDescription("Generates a random quote")
-                .setDescriptionLocalizations({
-                    de: "Erstellt ein zufälliges Zitat auf Englisch"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["random.description"])
         ),
 
     async execute(interaction) {
