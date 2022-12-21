@@ -49,23 +49,18 @@ var getNext = (day, month) => {
 
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
+const name = "countdown";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('countdown')
+        .setName(name)
         .setDescription('Shows the remaining time until a specific date')
-        .setDescriptionLocalizations({
-            de: "Zeigt dir verbleinde Zeit zu gewissen Ereignissen an"
-        })
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addStringOption(option =>
             option
                 .setName("date")
-                .setNameLocalizations({
-                    de: "datum"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].date)
                 .setDescription("The date of which you want to see the remaining time")
-                .setDescriptionLocalizations({
-                    de: "Das Datum, bis zu dem die verbleibende Zeit angezeigt werden soll"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["date.description"])
         ),
     async execute(interaction) {
         var inputDate = interaction.options.getString("date")?.split(".");

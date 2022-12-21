@@ -1,22 +1,17 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
+const name = "clear";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('clear')
+        .setName(name)
         .setDescription('Clear messages of a channel')
-        .setDescriptionLocalizations({
-            de: "Lösche Nachrichten aus einem Textkanal"
-        })
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addIntegerOption(option =>
             option
                 .setName("amount")
-                .setNameLocalizations({
-                    de: "anzahl"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].amount)
                 .setDescription("The amount of messages you want to clear")
-                .setDescriptionLocalizations({
-                    de: "Die Anzahl der Nachrichten, die gelöscht werden sollen"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["amount.description"])
                 .setMinValue(1)
                 .setMaxValue(100)
                 .setRequired(true)
@@ -33,6 +28,6 @@ module.exports = {
                     .reply(`Cleared ${messages.size} ${messages.size == 1 ? "message" : "messages"}! :bomb:`)
                     .then(x => setTimeout(() => interaction.deleteReply(), 3000));
             })
-            .catch(err => interaction.reply({ content: "The messages are older than 14 days, thus they cannot be deleted", ephemeral: true }))
+            .catch(err => interaction.reply({ content: interaction.translation.error, ephemeral: true }))
     },
 };

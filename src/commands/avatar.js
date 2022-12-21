@@ -1,31 +1,24 @@
 const { SlashCommandBuilder } = require('discord.js');
 
+const name = "avatar";
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('avatar')
+        .setName(name)
         .setDescription('Shows you the avatar of someone')
-        .setDescriptionLocalizations({
-            de: "Zeigt dir das Profilbild von einem Benutzer an"
-        })
+        .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addUserOption(option =>
             option
                 .setName("target")
                 .setDescription("The user of which you want to show the avatar")
-                .setDescriptionLocalizations({
-                    de: "Der Benutzer, von dem du das Profilbild sehen möchtest"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name].target)
                 .setRequired(true)
         )
         .addStringOption(option =>
             option
                 .setName("extension")
-                .setNameLocalizations({
-                    de: "dateiendung"
-                })
+                .setNameLocalizations(global.COMMAND_META[name].extension)
                 .setDescription("The format in which you want to show the avatar")
-                .setDescriptionLocalizations({
-                    de: "Das Format, in dem du das Profilbild haben möchtest"
-                })
+                .setDescriptionLocalizations(global.COMMAND_META[name]["extension.description"])
                 .addChoices(
                     { name: "PNG", value: "jpg" },
                     { name: "JPG", value: "jpg" },

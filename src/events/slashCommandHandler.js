@@ -24,7 +24,7 @@ module.exports = {
     async handle(interaction) {
         if (!interaction.isChatInputCommand()) return;
 
-        interaction.translation = getUsedLanguage(interaction)[interaction.commandName];
+        interaction.translation = getUsedLanguage(interaction).commands[interaction.commandName].content;
 
         const command = interaction.client.commands.get(interaction.commandName);
 
