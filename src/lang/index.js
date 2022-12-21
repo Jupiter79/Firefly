@@ -27,5 +27,3 @@ global.LANGUAGES.list.filter(x => x != "default").forEach(lang => {
         })
     })
 })
-
-console.log(global.COMMAND_META)
