@@ -1,0 +1,115 @@
+{
+  "commands": {
+    "avatar": {
+      "meta": {
+        "description": "Vous montre la photo de profil d'un utilisateur",
+        "target": "L'utilisateur dont vous voulez voir la photo de profil",
+        "extension": "extension",
+        "extension.description": "Le format dans lequel vous voulez la photo de profil"
+      }
+    },
+    "clear": {
+      "meta": {
+        "description": "Supprimer des messages d'un canal de texte",
+        "amount": "quantité",
+        "amount.description": "Le nombre de messages à supprimer"
+      },
+      "content": {
+        "error": "Les messages de plus de 14 jours ne peuvent pas être supprimés"
+      }
+    },
+    "coinflip": {
+      "meta": {
+        "description": "Lancer une pièce",
+        "opponent": "adversaire",
+        "opponent.description": "L'adversaire contre lequel vous voulez jouer"
+      },
+      "content": {
+        "name": "tirage au sort",
+        "result": "résultat",
+        "heads": "tête",
+        "tails": "Nombre",
+        "players": "joueur",
+        "winner": "gagnant",
+        "error": "Tu ne peux pas jouer contre toi-même"
+      }
+    },
+    "config": {
+      "meta": {
+        "description": "Ajuster les paramètres du bot pour ce serveur",
+        "welcome": "bienvenue",
+        "welcome.description": "Définissez un canal de bienvenue en accueillant les nouveaux membres du serveur",
+        "view": "montrer",
+        "view.description": "Affiche le canal d'accueil actuel",
+        "define": "mettre",
+        "define.description": "Définir un canal de bienvenue pour accueillir les nouveaux membres du serveur",
+        "channel": "canal",
+        "channel.description": "Le canal pour accueillir les nouveaux membres du serveur sur",
+        "reset": "réinitialiser",
+        "reset.description": "Réinitialiser le canal d'accueil"
+      },
+      "content": {
+        "no_defined": "Aucun canal de bienvenue n'a encore été défini",
+        "current_channel": "Le canal d'accueil actuel est : %channel%",
+        "already_defined": "C'est déjà la chaîne d'accueil",
+        "success_set": "Le canal de bienvenue est maintenant %channel%",
+        "success_reset": "Le canal de bienvenue a été réinitialisé avec succès !"
+      }
+    },
+    "countdown": {
+      "meta": {
+        "description": "Vous montre le temps restant pour certains événements",
+        "date": "date",
+        "date.description": "La date à laquelle le temps restant doit être affiché"
+      },
+      "content": {
+        "invalid_date": "Date invalide! ",
+        "error_future": "Veuillez entrer une date dans le futur",
+        "defined_date": "Date fixe",
+        "remaining_time": "Temps restant",
+        "events": {
+          "christmas": "🎄 Noël",
+          "newyear": "🎆 Nouvel An",
+          "valentine": "💝 Saint Valentin",
+          "birthday_firefly": "L'anniversaire de Firefly"
+        },
+        "default_countdowns": "Compte à rebours par défaut",
+        "today": "\"Aujourd'hui\""
+      }
+    },
+    "quote": {
+      "meta": {
+        "name": "devis",
+        "description": "Crée une image d'un devis",
+        "user": "utilisateur",
+        "user.description": "Créer un devis d'un utilisateur Discord",
+        "user.user.description": "L'auteur de la citation",
+        "user.text.description": "Le texte de la citation",
+        "person.description": "Créer un devis d'une personne réelle",
+        "person.person.description": "Le nom de la personne (par exemple, prénom et nom de famille)",
+        "person.text.description": " Le texte de la citation",
+        "person.image": "image",
+        "person.image.description": " Un lien vers la photo de cette personne",
+        "random": "coïncidence",
+        "random.description": "Génère un devis aléatoire en anglais"
+      },
+      "content": {
+        "valid_formats": "Seuls les formats suivants sont pris en charge : %formats%",
+        "error_fetch_image": "L'image n'a pas pu être trouvée",
+        "filename": "devis",
+        "error": "Quelque chose s'est mal passé !"
+      }
+    },
+    "random": {
+      "meta": {
+        "name": "hasard",
+        "description": "Envoie une chose aléatoire qui peut être sélectionnée",
+        "type": "taper",
+        "type.description": "La chose dont vous voulez obtenir un objet aléatoire"
+      },
+      "content": {
+        "answer": "La réponse est : %réponse%"
+      }
+    }
+  }
+}
