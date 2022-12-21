@@ -108,7 +108,7 @@
         "type.description": "La chose dont vous voulez obtenir un objet aléatoire"
       },
       "content": {
-        "answer": "La réponse est : %réponse%"
+        "answer": "La réponse est : %answer%"
       }
     }
   }
