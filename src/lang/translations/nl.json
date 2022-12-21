@@ -1,0 +1,115 @@
+{
+  "commands": {
+    "avatar": {
+      "meta": {
+        "description": "Toont u de profielfoto van een gebruiker",
+        "target": "De gebruiker waarvan je de profielfoto wilt zien",
+        "extension": "bestandsextensie",
+        "extension.description": "Het formaat waarin u de profielfoto wilt hebben"
+      }
+    },
+    "clear": {
+      "meta": {
+        "description": "Verwijder berichten van een tekstkanaal",
+        "amount": "aantal",
+        "amount.description": "Het aantal berichten dat moet worden verwijderd"
+      },
+      "content": {
+        "error": "Berichten ouder dan 14 dagen kunnen niet worden verwijderd"
+      }
+    },
+    "coinflip": {
+      "meta": {
+        "description": "Gooi een muntje om",
+        "opponent": "tegenstander",
+        "opponent.description": "De tegenstander waar je tegen wilt spelen"
+      },
+      "content": {
+        "name": "munt gooien",
+        "result": "resultaat",
+        "heads": "hoofd",
+        "tails": "Nummer",
+        "players": "speler",
+        "winner": "winnaar",
+        "error": "Je kunt niet tegen jezelf spelen"
+      }
+    },
+    "config": {
+      "meta": {
+        "description": "Pas de botinstellingen voor deze server aan",
+        "welcome": "welkom",
+        "welcome.description": "Stel een welkomstkanaal in door nieuwe serverleden te verwelkomen",
+        "view": "tonen",
+        "view.description": "Geeft het huidige welkomstkanaal weer",
+        "define": "zetten",
+        "define.description": "Stel een welkomstkanaal in om nieuwe serverleden te verwelkomen",
+        "channel": "kanaal",
+        "channel.description": "Het kanaal om nieuwe serverleden te verwelkomen",
+        "reset": "resetten",
+        "reset.description": "Reset het welkomstkanaal zodat nieuwe serverleden niet welkom zijn"
+      },
+      "content": {
+        "no_defined": "Er is nog geen welkomstkanaal ingesteld",
+        "current_channel": "Het huidige welkomstkanaal is: %channel%",
+        "already_defined": "Dit is al het welkomstkanaal",
+        "success_set": "Het welkomstkanaal is nu %channel%",
+        "success_reset": "Het welkomstkanaal is succesvol gereset!"
+      }
+    },
+    "countdown": {
+      "meta": {
+        "description": "Toont u de resterende tijd voor bepaalde gebeurtenissen",
+        "date": "datum",
+        "date.description": "De datum tot wanneer de resterende tijd moet worden weergegeven"
+      },
+      "content": {
+        "invalid_date": "Ongeldige datum! ",
+        "error_future": "Voer een datum in de toekomst in",
+        "defined_date": "Vaste datum",
+        "remaining_time": "Overgebleven tijd",
+        "events": {
+          "christmas": "🎄 Kerst",
+          "newyear": "🎆 Nieuwjaar",
+          "valentine": "💝 Valentijnsdag",
+          "birthday_firefly": "Firefly is jarig"
+        },
+        "default_countdowns": "Standaard aftellen",
+        "today": "`Vandaag`"
+      }
+    },
+    "quote": {
+      "meta": {
+        "name": "citaat",
+        "description": "Creëert een afbeelding van een citaat",
+        "user": "gebruiker",
+        "user.description": "Maak een citaat van een Discord-gebruiker",
+        "user.user.description": "De auteur van het citaat",
+        "user.text.description": "De tekst van het citaat",
+        "person.description": "Maak een citaat van een echt persoon",
+        "person.person.description": "De naam van de persoon (bijvoorbeeld voor- en achternaam)",
+        "person.text.description": " De tekst van het citaat",
+        "person.image": "afbeelding",
+        "person.image.description": " Een link naar de foto van die persoon",
+        "random": "toevallig",
+        "random.description": "Genereert een willekeurig citaat in het Engels"
+      },
+      "content": {
+        "valid_formats": "Alleen de volgende formaten worden ondersteund: %formats%",
+        "error_fetch_image": "De afbeelding kon niet worden gevonden",
+        "filename": "citaat",
+        "error": "Er is iets fout gegaan!"
+      }
+    },
+    "random": {
+      "meta": {
+        "name": "toeval",
+        "description": "Verzendt een willekeurig ding dat kan worden geselecteerd",
+        "type": "type",
+        "type.description": "Het ding waar je een willekeurig item van wilt krijgen"
+      },
+      "content": {
+        "answer": "Het antwoord is: %answer%"
+      }
+    }
+  }
+}
