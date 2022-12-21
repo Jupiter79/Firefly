@@ -69,7 +69,7 @@ async function makeQuote(author, text, image) {
     return canvas.toBuffer();
 }
 
-const VALID_URL = /(https?:\/\/.*\.(?:png|jpg|gif|SVG))/i;
+const VALID_URL = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
 
 module.exports = {
     data: new SlashCommandBuilder()
