@@ -11,6 +11,7 @@ const client = new Client({ intents: intents });
 
 require("./lang/index.js");
 require("./web/index.js");
+require("./logger/index.js").init(client);
 
 client.events = new Collection();
 client.commands = new Collection();
