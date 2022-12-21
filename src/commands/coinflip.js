@@ -24,18 +24,21 @@ module.exports = {
 
         var boolean = Math.random() < 0.5;
 
+        var headsTailsImage = "src/assets/heads_tails.png";
+
         if (!opponent) {
             var embed = new EmbedBuilder()
-                .setTitle("Coin Flip")
+                .setTitle(interaction.translation.name)
                 .setColor(0xf2ba00)
+                .setThumbnail("attachment://heads_tails.png")
                 .addFields({ name: interaction.translation.result, value: boolean ? interaction.translation.heads : interaction.translation.tails })
 
-            await interaction.reply({ embeds: [embed] });
+            await interaction.reply({ embeds: [embed], files: [headsTailsImage] });
         } else {
             if (initiator == opponent) return interaction.reply({ content: interaction.translation.error, ephemeral: true });
 
             var embed = new EmbedBuilder()
-                .setTitle("Coin Flip")
+                .setTitle(interaction.translation.name)
                 .setColor(0xf2ba00)
                 .addFields(
                     {
@@ -47,9 +50,9 @@ module.exports = {
                         value: boolean ? `${initiator.toString()} (${interaction.translation.heads})` : `${opponent.toString()} (${interaction.translation.tails})`
                     }
                 )
-                .setThumbnail(boolean ? initiator.displayAvatarURL() : opponent.displayAvatarURL())
+                .setThumbnail("attachment://heads_tails.png")
 
-            await interaction.reply({ embeds: [embed] });
+            await interaction.reply({ embeds: [embed], files: [headsTailsImage] });
         }
     },
 };
