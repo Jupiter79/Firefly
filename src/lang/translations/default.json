@@ -3,6 +3,7 @@
         "error": "The messages are older than 14 days, thus they cannot be deleted"
     },
     "coinflip": {
+        "name": "Coin Flip",
         "result": "Result",
         "heads": "Heads",
         "tails": "Tails",

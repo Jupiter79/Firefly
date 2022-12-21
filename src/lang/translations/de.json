@@ -3,6 +3,7 @@
         "error": "Nachrichten, die älter als 14 Tage sind, können nicht gelöscht werden"
     },
     "coinflip": {
+        "name": "Münzwurf",
         "result": "Ergebnis",
         "heads": "Kopf",
         "tails": "Zahl",
