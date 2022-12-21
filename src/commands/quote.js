@@ -53,7 +53,7 @@ async function makeQuote(author, text, image) {
         ctx.restore();
     }
 
-    ctx.font = `${image ? 45 : 47}px 'EB Garamond'`;
+    ctx.font = `45px 'EB Garamond'`;
 
     var lines = Math.ceil(text.length / CONFIG.text.charactersperline);
     var totalHeight = (lines - 2) * CONFIG.text.lineheight;
