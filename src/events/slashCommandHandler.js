@@ -4,6 +4,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
 
 const Logger = require("../logger/index.js");
+const Lang = require("../lang/index.js");
 
 const checkGuildExists = async (guild) => {
     var checkGuild = await prisma.guild.findUnique({
@@ -15,18 +16,14 @@ const checkGuildExists = async (guild) => {
     })
 }
 
-const getUsedLanguage = (interaction) => {
-    var usedLanguage = interaction.locale;
-
-    return global.LANGUAGES.list.includes(usedLanguage) ? global.LANGUAGES[usedLanguage] : global.LANGUAGES["default"];
-}
-
 module.exports = {
     event: Events.InteractionCreate,
     async handle(interaction) {
         if (!interaction.isChatInputCommand()) return;
 
-        interaction.translation = getUsedLanguage(interaction).commands[interaction.commandName].content;
+        var usedLanguage = Lang.getUsedLanguage(interaction);
+
+        interaction.translation = usedLanguage.commands[interaction.commandName].content;
 
         const command = interaction.client.commands.get(interaction.commandName);
 
@@ -42,7 +39,7 @@ module.exports = {
             Logger.newCommand(interaction);
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            await interaction.reply({ content: "An error occured while executing the command!", ephemeral: true });
         }
     }
 }
