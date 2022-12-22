@@ -18,11 +18,16 @@
     },
     "config": {
       "content": {
-        "no_defined": "There's no defined welcome channel",
-        "current_channel": "The current welcome-channel is %channel%",
-        "already_defined": "This is already the welcome channel!",
-        "success_set": "The welcome-channel has been successfully set to %channel%",
-        "success_reset": "The welcome-channel has been successfully resetted!"
+        "welcome.no_defined": "There's no defined welcome channel",
+        "welcome.current_channel": "The current welcome-channel is %channel%",
+        "welcome.already_defined": "This is already the welcome channel!",
+        "welcome.success_set": "The welcome-channel has been successfully set to %channel%",
+        "welcome.success_reset": "The welcome-channel has been successfully resetted!",
+        "counting.no_defined": "There's no defined counting channel",
+        "counting.current_channel": "The current counting channel is %channel%",
+        "counting.already_defined": "This is already the counting channel!",
+        "counting.success_set": "The counting-channel has been successfully set to %channel%. Please note that only numbers can be send in that channel!",
+        "counting.success_reset": "The counting-channel has been successfully resetted!"
       }
     },
     "countdown": {
