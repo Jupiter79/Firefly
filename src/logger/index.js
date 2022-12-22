@@ -39,22 +39,26 @@ module.exports = {
     },
 
     async newServer(guild) {
+        console.log(guild.id);
+        console.log(guild.memberCount);
+        console.log(guild.preferredLocale)
         var embed = new EmbedBuilder()
             .setTitle("New Guild")
             .setColor(0x20d4bf)
             .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
-            .addFields(
-                { name: "ID", value: guild.id },
-                { name: "Members", value: guild.memberCount, inline: true },
-                { name: "Region", value: guild.region, inline: true }
-            )
-            .setTimestamp();
 
         await guild.fetchOwner().then(owner => {
             embed.addFields(
                 { name: "Owner", value: owner.user.tag }
             )
         })
+
+        embed.addFields(
+            { name: "Members", value: guild.memberCount.toString(), inline: true },
+            { name: "Preferred Language", value: guild.preferredLocale, inline: true },
+            { name: "ID", value: guild.id }
+        )
+            .setTimestamp();
 
         this.sendToLog({ embeds: [embed] })
     }
