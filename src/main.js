@@ -9,7 +9,7 @@ if (process.env.NODE_ENV != "development") intents.push(GatewayIntentBits.GuildM
 
 const client = new Client({ intents: intents });
 
-require("./lang/index.js");
+require("./lang/index.js").init();
 require("./web/index.js");
 require("./logger/index.js").init(client);
 
