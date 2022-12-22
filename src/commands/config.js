@@ -57,15 +57,15 @@ module.exports = {
 
         if (subcommandgroup == "welcome") {
             if (subcommand == "view") {
-                if (!guild?.welcome_channel) return await interaction.reply(interactions.translation.no_defined)
+                if (!guild?.welcome_channel) return await interaction.reply(interaction.translation.no_defined)
 
                 interaction.guild.channels.fetch(guild.welcome_channel)
                     .then(async channel => {
-                        await interaction.reply(interactions.translation.current_channel.replace("%channel%", channel.toString()))
+                        await interaction.reply(interaction.translation.current_channel.replace("%channel%", channel.toString()))
                     })
                     .catch(async () => {
                         await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: null } });
-                        await interaction.reply(interactions.translation.no_defined)
+                        await interaction.reply(interaction.translation.no_defined)
                     });
             } else if (subcommand == "define") {
                 var channel = interaction.options.getChannel("channel");
