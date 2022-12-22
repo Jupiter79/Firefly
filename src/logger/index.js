@@ -39,9 +39,6 @@ module.exports = {
     },
 
     async newServer(guild) {
-        console.log(guild.id);
-        console.log(guild.memberCount);
-        console.log(guild.preferredLocale)
         var embed = new EmbedBuilder()
             .setTitle("New Guild")
             .setColor(0x20d4bf)
