@@ -12,24 +12,50 @@ module.exports = {
         this.channel = process.env.LOGGER_CHANNEL;
     },
 
+    sendToLog(content) {
+        this.client.guilds.fetch(this.guild)
+            .then(guild =>
+                guild.channels.fetch(this.channel).then(channel =>
+                    channel.send(content)
+                )
+            )
+
+    },
+
     newCommand(interaction) {
         if (interaction.user.id == process.env.LOGGER_IGNORE) return;
 
-        this.client.guilds.fetch(this.guild)
-            .then(guild =>
-                guild.channels.fetch(this.channel).then(channel => {
-                    var embed = new EmbedBuilder()
-                        .setTitle("Executed Command")
-                        .setColor(0x00ff00)
-                        .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() })
-                        .addFields(
-                            { name: "Guild", value: `**ID**: ${interaction.guild.id}\n**Name**: ${interaction.guild.name}` },
-                            { name: "Command", value: `\`${interaction.toString()}\`` }
-                        )
-                        .setTimestamp();
-
-                    channel.send({ embeds: [embed] });
-                })
+        var embed = new EmbedBuilder()
+            .setTitle("Executed Command")
+            .setColor(0x00ff00)
+            .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() })
+            .addFields(
+                { name: "Guild", value: `**ID**: ${interaction.guild.id}\n**Name**: ${interaction.guild.name}` },
+                { name: "Command", value: `\`${interaction.toString()}\`` }
             )
+            .setTimestamp();
+
+        this.sendToLog({ embeds: [embed] })
     },
+
+    async newServer(guild) {
+        var embed = new EmbedBuilder()
+            .setTitle("New Guild")
+            .setColor(0x20d4bf)
+            .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
+            .addFields(
+                { name: "ID", value: guild.id },
+                { name: "Members", value: guild.memberCount, inline: true },
+                { name: "Region", value: guild.region, inline: true }
+            )
+            .setTimestamp();
+
+        await guild.fetchOwner().then(owner => {
+            embed.addFields(
+                { name: "Owner", value: owner.user.tag }
+            )
+        })
+
+        this.sendToLog({ embeds: [embed] })
+    }
 }
