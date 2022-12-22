@@ -4,8 +4,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const intents = [GatewayIntentBits.Guilds];
-if (process.env.NODE_ENV != "development") intents.push(GatewayIntentBits.GuildMembers);
+const intents = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent];
 
 const client = new Client({ intents: intents });
 
