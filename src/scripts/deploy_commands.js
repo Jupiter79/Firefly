@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-require("../lang/index.js")
+require("../lang/index.js").init();
 
 const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
