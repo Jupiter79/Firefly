@@ -11,5 +11,6 @@ model Guild {
     id String @id @db.VarChar(50)
     welcome_channel String? @db.VarChar(50)
     counting_channel String? @db.VarChar(50)
+    counting_last_user String? @db.VarChar(50)
     counting_last_number Int @default(0)
 }
