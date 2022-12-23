@@ -9,6 +9,7 @@ generator client {
 
 model Guild {
     id String @id @db.VarChar(50)
+    language String @db.VarChar(5) @default("en")
     welcome_channel String? @db.VarChar(50)
     counting_channel String? @db.VarChar(50)
     counting_last_user String? @db.VarChar(50)

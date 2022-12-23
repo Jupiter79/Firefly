@@ -2,6 +2,13 @@ const fs = require('node:fs');
 
 global.LANGUAGES = {};
 global.COMMAND_META = {};
+global.VALID_LANGUAGES = [
+    { name: "English", value: "en" },
+    { name: "German (Deutsch)", value: "de" },
+    { name: "French (Français)", value: "fr" },
+    { name: "Dutch (Nederlands)", value: "nl" },
+    { name: "Russian (Русский)", value: "ru" }
+];
 
 module.exports = {
     init() {

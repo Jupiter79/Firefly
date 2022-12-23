@@ -11,6 +11,21 @@ module.exports = {
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDMPermission(false)
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName("language")
+                .setDescription("Change the language of the bot for this server")
+                .addStringOption(option => {
+                    option
+                        .setName("language")
+                        .setDescription("The language you want to set for this server")
+                        .setRequired(true)
+
+                    global.VALID_LANGUAGES.forEach(lang => option.addChoices({ name: lang.name, value: lang.value }));
+
+                    return option;
+                })
+        )
         .addSubcommandGroup(subcommandgroup =>
             subcommandgroup.
                 setName("welcome")
@@ -91,7 +106,24 @@ module.exports = {
             where: { id: interaction.guild.id }
         })
 
-        if (subcommandgroup == "welcome") {
+        if (subcommand == "language") {
+            var language = interaction.options.getString("language");
+            var languageName = global.VALID_LANGUAGES.find(x => x.value == language).name;
+
+            if (language == guild.language) return interaction.reply({ content: "This is already the language!", ephemeral: true });
+            else {
+                await prisma.guild.update({
+                    where: {
+                        id: interaction.guild.id
+                    },
+                    data: {
+                        language: language
+                    }
+                });
+
+                await interaction.reply({ content: `The language has been successfully set to \`${languageName}\`` });
+            }
+        } else if (subcommandgroup == "welcome") {
             if (subcommand == "view") {
                 if (!guild?.welcome_channel) return await interaction.reply(interaction.translation["welcome.no_defined"])
 
