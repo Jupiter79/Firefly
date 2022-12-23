@@ -32,7 +32,7 @@ module.exports = {
             return;
         }
 
-        await checkGuildExists(interaction.guild);
+        if (interaction.guild) await checkGuildExists(interaction.guild);
 
         try {
             await command.execute(interaction);
