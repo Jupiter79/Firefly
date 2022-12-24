@@ -38,8 +38,14 @@ module.exports = {
         })
     },
     getUsedLanguage(interaction) {
-        var usedLanguage = interaction.locale;
+        if (interaction.dbGuild) {
+            let lang = interaction.dbGuild.language;
 
-        return global.LANGUAGES.list.includes(usedLanguage) ? global.LANGUAGES[usedLanguage] : global.LANGUAGES["default"];
+            return global.LANGUAGES[lang == "en" ? "default" : lang]
+        } else {
+            var usedLanguage = interaction.locale;
+
+            return global.LANGUAGES.list.includes(usedLanguage) ? global.LANGUAGES[usedLanguage] : global.LANGUAGES["default"];
+        }
     }
 }

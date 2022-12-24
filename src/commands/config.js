@@ -14,12 +14,11 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName("language")
-                .setDescription("Change the language of the bot for this server")
+                .setDescription("View or change the language for this server")
                 .addStringOption(option => {
                     option
                         .setName("language")
                         .setDescription("The language you want to set for this server")
-                        .setRequired(true)
 
                     global.VALID_LANGUAGES.forEach(lang => option.addChoices({ name: lang.name, value: lang.value }));
 
@@ -108,21 +107,24 @@ module.exports = {
 
         if (subcommand == "language") {
             var language = interaction.options.getString("language");
-            var languageName = global.VALID_LANGUAGES.find(x => x.value == language).name;
 
-            if (language == guild.language) return interaction.reply({ content: "This is already the language!", ephemeral: true });
-            else {
-                await prisma.guild.update({
-                    where: {
-                        id: interaction.guild.id
-                    },
-                    data: {
-                        language: language
-                    }
-                });
+            if (language) {
+                var languageName = global.VALID_LANGUAGES.find(x => x.value == language).name;
 
-                await interaction.reply({ content: `The language has been successfully set to \`${languageName}\`` });
-            }
+                if (language == guild.language) return interaction.reply({ content: "This is already the language!", ephemeral: true });
+                else {
+                    await prisma.guild.update({
+                        where: {
+                            id: interaction.guild.id
+                        },
+                        data: {
+                            language: language
+                        }
+                    });
+
+                    await interaction.reply({ content: `The language has been successfully set to \`${languageName}\`` });
+                }
+            } else await interaction.reply(`The current language is \`${global.VALID_LANGUAGES.find(x => x.value == interaction.dbGuild.language).name}\``)
         } else if (subcommandgroup == "welcome") {
             if (subcommand == "view") {
                 if (!guild?.welcome_channel) return await interaction.reply(interaction.translation["welcome.no_defined"])
