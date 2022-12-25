@@ -44,6 +44,8 @@ for (const file of commandFiles) {
     }
 }
 
+global.COMMANDS = client.commands;
+
 // HANDLE ALL EVENTS
 client.events.forEach(event => {
     client.on(event.event, (...args) => event.handle(...args));

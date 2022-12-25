@@ -9,8 +9,7 @@ module.exports = {
         .addUserOption(option =>
             option
                 .setName("opponent")
-                .setNameLocalizations(global.COMMAND_META[name].opponent)
-                .setDescription("The user who you want to play against")
+                .setDescription("The opponent you want to play against")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["opponent.description"])
         ),
     async execute(interaction) {

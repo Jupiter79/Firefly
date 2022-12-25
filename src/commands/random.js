@@ -4,13 +4,11 @@ const name = "random";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(name)
-        .setNameLocalizations(global.COMMAND_META[name].name)
         .setDescription('Sends a random thing of what you defined')
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addStringOption(option =>
             option
                 .setName("type")
-                .setNameLocalizations(global.COMMAND_META[name].type)
                 .setDescription("The thing you want to randomize")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["type.description"])
                 .addChoices(
@@ -30,7 +28,7 @@ module.exports = {
 
             await interaction.reply(chosen);
         } else {
-            await interaction.reply(interaction.translation.answer.replace("%answer%", Math.random() < 0.5 ? "Yes" : "No"))
+            await interaction.reply(interaction.translation.answer.replace("{{answer}}", Math.random() < 0.5 ? "✅" : "❌"))
         }
     },
 };

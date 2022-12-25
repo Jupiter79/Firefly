@@ -53,13 +53,12 @@ const name = "countdown";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(name)
-        .setDescription('Shows the remaining time until a specific date')
+        .setDescription('Shows you the remaining time till specific dates')
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addStringOption(option =>
             option
                 .setName("date")
-                .setNameLocalizations(global.COMMAND_META[name].date)
-                .setDescription("The date of which you want to see the remaining time")
+                .setDescription("The date you want to show the remaining time of")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["date.description"])
         ),
     async execute(interaction) {

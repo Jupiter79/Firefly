@@ -20,7 +20,7 @@ module.exports = {
 
         var usedLanguage = Lang.getUsedLanguage(interaction);
 
-        interaction.translation = usedLanguage.commands[interaction.commandName].content;
+        interaction.translation = usedLanguage.commands[interaction.commandName]?.content;
 
         try {
             await command.execute(interaction);

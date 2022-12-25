@@ -3,11 +3,18 @@ const fs = require('node:fs');
 global.LANGUAGES = {};
 global.COMMAND_META = {};
 global.VALID_LANGUAGES = [
-    { name: "English", value: "en" },
+    { name: "English [DEFAULT]", value: "en" },
     { name: "German (Deutsch)", value: "de" },
     { name: "French (Français)", value: "fr" },
     { name: "Dutch (Nederlands)", value: "nl" },
-    { name: "Russian (Русский)", value: "ru" }
+    { name: "Russian (Русский)", value: "ru" },
+    { name: "Spanish (Español)", value: "es-ES" },
+    { name: "Danish (Dansk)", value: "da" },
+    { name: "Italian (Italiano)", value: "it" },
+    { name: "Greek (Ελληνικά)", value: "el" },
+    { name: "Bulgarian (български)", value: "bg" },
+    { name: "Chinese China (中国中国)", value: "zh-CN" },
+    { name: "Chinese Taiwan (中國中國)", value: "zh-TW" }
 ];
 
 module.exports = {

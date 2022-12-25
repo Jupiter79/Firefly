@@ -1,0 +1,123 @@
+{
+  "commands": {
+    "avatar": {
+      "meta": {
+        "description": "显示用户头像",
+        "target": "您要显示其头像的用户",
+        "extension.description": "你想要头像的文件格式"
+      }
+    },
+    "clear": {
+      "meta": {
+        "description": "删除频道消息",
+        "amount.description": "您要删除的邮件数量"
+      },
+      "content": {
+        "error": "消息超过 14 天，因此无法删除"
+      }
+    },
+    "coinflip": {
+      "meta": {
+        "description": "抛硬币",
+        "opponent.description": "你想对战的对手"
+      },
+      "content": {
+        "name": "抛硬币",
+        "result": "结果",
+        "heads": "元首",
+        "tails": "尾巴",
+        "players": "球员",
+        "winner": "优胜者",
+        "error": "你不能和自己比赛"
+      }
+    },
+    "config": {
+      "meta": {
+        "description": "更改此服务器的机器人配置",
+        "language.description": "查看或更改此服务器的语言",
+        "language.language.description": "您要为此服务器设置的语言",
+        "welcome.description": "定义欢迎新用户的欢迎频道",
+        "welcome.view.description": "显示当前的欢迎频道",
+        "welcome.define.description": "定义应欢迎新用户的频道",
+        "welcome.channel.description": "迎接新用户的渠道",
+        "welcome.reset.description": "重置欢迎频道，不再欢迎新用户",
+        "counting.description": "定义一个计数（游戏）通道，用户可以在其中计数",
+        "counting.view.description": "显示当前计数通道",
+        "counting.define.description": "定义一个可以玩计数游戏的计数通道",
+        "counting.channel.description": "用户可以计数的通道",
+        "counting.reset.description": "重置计数游戏频道"
+      },
+      "content": {
+        "language.already": "这已经是语言了！",
+        "language.success_set": "语言已成功设置为 {{language}}",
+        "welcome.no_defined": "没有定义的欢迎频道",
+        "welcome.current_channel": "当前的欢迎频道是 {{channel}}",
+        "welcome.already_defined": "这已经是欢迎频道了！",
+        "welcome.success_set": "欢迎频道已成功设置为 {{channel}}",
+        "welcome.success_reset": "欢迎频道已成功重置！",
+        "counting.no_defined": "没有定义的计数通道",
+        "counting.current_channel": "当前计数通道为 {{channel}}",
+        "counting.already_defined": "这已经是计数通道了！",
+        "counting.success_set": "计数通道已成功设置为 {{channel}}.",
+        "counting.success_reset": "计数通道已成功重置！"
+      }
+    },
+    "countdown": {
+      "meta": {
+        "description": "显示到特定日期的剩余时间",
+        "date.description": "您要显示剩余时间的日期"
+      },
+      "content": {
+        "invalid_date": "输入的日期无效！",
+        "error_future": "请输入将来的日期",
+        "defined_date": "定义日期",
+        "remaining_time": "时间",
+        "events": {
+          "christmas": "🎄 圣诞节",
+          "newyear": "🎆新年",
+          "valentine": "💝情人节",
+          "birthday_firefly": "萤火虫生日"
+        },
+        "default_countdowns": "默认倒计时",
+        "today": "`今天`"
+      }
+    },
+    "help": {
+      "meta": {
+        "description": "显示此机器人的所有命令"
+      },
+      "content": {
+        "embed_title.guild": "萤火虫的命令",
+        "embed_title.private": "萤火虫的私有命令"
+      }
+    },
+    "quote": {
+      "meta": {
+        "description": "生成带有引号的图像",
+        "user.description": "生成来自 Discord 用户的报价",
+        "user.user.description": "报价的作者",
+        "user.text.description": "报价的文本",
+        "person.description": "生成来自真人的报价",
+        "person.person.description": "那个人的名字",
+        "person.text.description": " 报价的文本",
+        "person.image.description": " 您要用于此报价的图像的 URL",
+        "random.description": "生成随机报价"
+      },
+      "content": {
+        "valid_formats": "仅有的 {{formats}} 图片链接有效！",
+        "error_fetch_image": "无法获取图像！",
+        "filename": "引用",
+        "error": "错误出错了！"
+      }
+    },
+    "random": {
+      "meta": {
+        "description": "发送您定义的随机内容",
+        "type.description": "你想要随机化的东西"
+      },
+      "content": {
+        "answer": "答案是： {{answer}}"
+      }
+    }
+  }
+}
