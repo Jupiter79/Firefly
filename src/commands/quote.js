@@ -75,13 +75,11 @@ const name = "quote";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(name)
-        .setNameLocalizations(global.COMMAND_META[name].name)
         .setDescription('Generates a image with a quote')
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addSubcommand(subcommand =>
             subcommand
                 .setName("user")
-                .setNameLocalizations(global.COMMAND_META[name].user)
                 .setDescription("Generates a quote from a Discord user")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["user.description"])
                 .addUserOption(option =>
@@ -124,7 +122,6 @@ module.exports = {
                 .addStringOption(option =>
                     option
                         .setName("image")
-                        .setNameLocalizations(global.COMMAND_META[name]["person.image"])
                         .setDescription("The URL of the image you want to use for this quote")
                         .setDescriptionLocalizations(global.COMMAND_META[name]["person.image.description"])
                 )
@@ -132,7 +129,6 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName("random")
-                .setNameLocalizations(global.COMMAND_META[name].random)
                 .setDescription("Generates a random quote")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["random.description"])
         ),
@@ -153,7 +149,7 @@ module.exports = {
             var text = interaction.options.getString("text");
             var image = interaction.options.getString("image");
 
-            if (image && !VALID_URL.test(image)) return await interaction.reply({ content: interaction.translation.valid_formats.replace("%formats%", "PNG, JPG, GIF, SVG"), ephemeral: true });
+            if (image && !VALID_URL.test(image)) return await interaction.reply({ content: interaction.translation.valid_formats.replace("{{formats}}", "PNG, JPG, GIF, SVG"), ephemeral: true });
 
             var quote = await makeQuote(person, text, image);
 

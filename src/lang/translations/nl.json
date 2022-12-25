@@ -2,128 +2,121 @@
   "commands": {
     "avatar": {
       "meta": {
-        "description": "Toont u de profielfoto van een gebruiker",
-        "target": "De gebruiker waarvan je de profielfoto wilt zien",
-        "extension": "bestandsextensie",
-        "extension.description": "Het formaat waarin u de profielfoto wilt hebben"
+        "description": "Toon de avatar van een gebruiker",
+        "target": "De gebruiker waarvan je de avatar wilt laten zien",
+        "extension.description": "Het bestandsformaat waarin u de avatar wilt hebben"
       }
     },
     "clear": {
       "meta": {
-        "description": "Verwijder berichten van een tekstkanaal",
-        "amount": "aantal",
-        "amount.description": "Het aantal berichten dat moet worden verwijderd"
+        "description": "Verwijder berichten van een kanaal",
+        "amount.description": "Het aantal berichten dat u wilt verwijderen"
       },
       "content": {
-        "error": "Berichten ouder dan 14 dagen kunnen niet worden verwijderd"
+        "error": "De berichten zijn ouder dan 14 dagen en kunnen dus niet worden verwijderd"
       }
     },
     "coinflip": {
       "meta": {
         "description": "Gooi een muntje om",
-        "opponent": "tegenstander",
         "opponent.description": "De tegenstander waar je tegen wilt spelen"
       },
       "content": {
-        "name": "munt gooien",
-        "result": "resultaat",
-        "heads": "hoofd",
-        "tails": "Nummer",
-        "players": "speler",
-        "winner": "winnaar",
+        "name": "Munt opgooien",
+        "result": "Resultaat",
+        "heads": "Hoofden",
+        "tails": "Staarten",
+        "players": "Spelers",
+        "winner": "Winnaar",
         "error": "Je kunt niet tegen jezelf spelen"
       }
     },
     "config": {
       "meta": {
-        "description": "Pas de botinstellingen voor deze server aan",
-        "welcome": "welkom",
-        "welcome.description": "Stel een welkomstkanaal in door nieuwe serverleden te verwelkomen",
-        "welcome.view": "tonen",
-        "welcome.view.description": "Geeft het huidige welkomstkanaal weer",
-        "welcome.define": "zetten",
-        "welcome.define.description": "Stel een welkomstkanaal in om nieuwe serverleden te verwelkomen",
-        "welcome.channel": "kanaal",
-        "welcome.channel.description": "Het kanaal om nieuwe serverleden te verwelkomen",
-        "welcome.reset": "resetten",
-        "welcome.reset.description": "Reset het welkomstkanaal zodat nieuwe serverleden niet welkom zijn",
-        "counting": "tellen",
-        "counting.description": "Een telspel over het één voor één optellen",
-        "counting.view": "tonen",
-        "counting.view.description": "Geeft het huidige telkanaal weer",
-        "counting.define": "zetten",
-        "counting.define.description": "Stel een telkanaal in waarin het spel gespeeld kan worden",
-        "counting.channel": "kanaal",
-        "counting.channel.description": "Het kanaal waar het spel gespeeld kan worden",
-        "counting.reset": "resetten",
-        "counting.reset.description": "Reset het telkanaal zodat het niet meer afgespeeld kan worden"
+        "description": "Wijzig de configuratie van de bot voor deze server",
+        "language.description": "Bekijk of wijzig de taal voor deze server",
+        "language.language.description": "De taal die u wilt instellen voor deze server",
+        "welcome.description": "Definieer een welkomstkanaal waarin nieuwe gebruikers moeten worden begroet",
+        "welcome.view.description": "Toont het huidige welkomstkanaal",
+        "welcome.define.description": "Definieer een kanaal waarin nieuwe gebruikers moeten worden begroet",
+        "welcome.channel.description": "Het kanaal waarin nieuwe gebruikers moeten worden begroet",
+        "welcome.reset.description": "Reset het welkomstkanaal zodat nieuwe gebruikers niet meer worden begroet",
+        "counting.description": "Definieer een tel(spel)kanaal waarin gebruikers kunnen optellen",
+        "counting.view.description": "Toont het huidige telkanaal",
+        "counting.define.description": "Definieer een telkanaal waar het telspel gespeeld kan worden",
+        "counting.channel.description": "Het kanaal waarin gebruikers kunnen optellen",
+        "counting.reset.description": "Reset het telspelkanaal"
       },
       "content": {
+        "language.already": "Dit is al de taal!",
+        "language.success_set": "De taal is succesvol ingesteld op {{language}}",
         "welcome.no_defined": "Er is geen gedefinieerd welkomstkanaal",
-        "welcome.current_channel": "Het huidige welkomstkanaal is %channel%",
+        "welcome.current_channel": "Het huidige welkomstkanaal is {{channel}}",
         "welcome.already_defined": "Dit is al het welkomstkanaal!",
-        "welcome.success_set": "Het welkomstkanaal is succesvol ingesteld op %channel%",
+        "welcome.success_set": "Het welkomstkanaal is succesvol ingesteld op {{channel}}",
         "welcome.success_reset": "Het welkomstkanaal is succesvol gereset!",
         "counting.no_defined": "Er is geen gedefinieerd telkanaal",
-        "counting.current_channel": "Het huidige telkanaal is %channel%",
+        "counting.current_channel": "Het huidige telkanaal is {{channel}}",
         "counting.already_defined": "Dit is al het telkanaal!",
-        "counting.success_set": "Het telkanaal is succesvol ingesteld op %channel%. ",
+        "counting.success_set": "Het telkanaal is succesvol ingesteld op {{channel}}. ",
         "counting.success_reset": "Het telkanaal is succesvol gereset!"
       }
     },
     "countdown": {
       "meta": {
-        "description": "Toont u de resterende tijd voor bepaalde gebeurtenissen",
-        "date": "datum",
-        "date.description": "De datum tot wanneer de resterende tijd moet worden weergegeven"
+        "description": "Toont u de resterende tijd tot specifieke datums",
+        "date.description": "De datum waarvan u de resterende tijd wilt weergeven"
       },
       "content": {
-        "invalid_date": "Ongeldige datum! ",
+        "invalid_date": "Ongeldige datum ingevuld! ",
         "error_future": "Voer een datum in de toekomst in",
-        "defined_date": "Vaste datum",
-        "remaining_time": "Overgebleven tijd",
+        "defined_date": "Gedefinieerde datum",
+        "remaining_time": "Tijd",
         "events": {
           "christmas": "🎄 Kerst",
           "newyear": "🎆 Nieuwjaar",
           "valentine": "💝 Valentijnsdag",
-          "birthday_firefly": "Firefly is jarig"
+          "birthday_firefly": "Glimworm verjaardag"
         },
-        "default_countdowns": "Standaard aftellen",
+        "default_countdowns": "Standaard aftellingen",
         "today": "`Vandaag`"
+      }
+    },
+    "help": {
+      "meta": {
+        "description": "Toont alle commando's van deze bot"
+      },
+      "content": {
+        "embed_title.guild": "Commando's van Firefly",
+        "embed_title.private": "Privécommando's van Firefly"
       }
     },
     "quote": {
       "meta": {
-        "name": "citaat",
-        "description": "Creëert een afbeelding van een citaat",
-        "user": "gebruiker",
-        "user.description": "Maak een citaat van een Discord-gebruiker",
+        "description": "Genereert een afbeelding met een citaat",
+        "user.description": "Genereert een citaat van een Discord-gebruiker",
         "user.user.description": "De auteur van het citaat",
         "user.text.description": "De tekst van het citaat",
-        "person.description": "Maak een citaat van een echt persoon",
-        "person.person.description": "De naam van de persoon (bijvoorbeeld voor- en achternaam)",
+        "person.description": "Genereert een citaat van een echt persoon",
+        "person.person.description": "De naam van die persoon",
         "person.text.description": " De tekst van het citaat",
-        "person.image": "afbeelding",
-        "person.image.description": " Een link naar de foto van die persoon",
-        "random": "toevallig",
-        "random.description": "Genereert een willekeurig citaat in het Engels"
+        "person.image.description": " De URL van de afbeelding die je voor deze quote wilt gebruiken",
+        "random.description": "Genereert een willekeurig citaat"
       },
       "content": {
-        "valid_formats": "Alleen de volgende formaten worden ondersteund: %formats%",
-        "error_fetch_image": "De afbeelding kon niet worden gevonden",
+        "valid_formats": "Enkel en alleen {{formats}} afbeelding links zijn geldig!",
+        "error_fetch_image": "Kan geen beeld krijgen!",
         "filename": "citaat",
-        "error": "Er is iets fout gegaan!"
+        "error": "Fout Er ging iets mis!"
       }
     },
     "random": {
       "meta": {
-        "name": "toeval",
-        "description": "Verzendt een willekeurig ding dat kan worden geselecteerd",
-        "type": "type",
-        "type.description": "Het ding waar je een willekeurig item van wilt krijgen"
+        "description": "Verzendt een willekeurig iets van wat u hebt gedefinieerd",
+        "type.description": "Het ding dat je wilt randomiseren"
       },
       "content": {
-        "answer": "Het antwoord is: %answer%"
+        "answer": "Het antwoord is: {{answer}}"
       }
     }
   }

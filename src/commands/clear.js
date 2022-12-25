@@ -4,13 +4,12 @@ const name = "clear";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(name)
-        .setDescription('Clear messages of a channel')
+        .setDescription('Delete messages of a channel')
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addIntegerOption(option =>
             option
                 .setName("amount")
-                .setNameLocalizations(global.COMMAND_META[name].amount)
-                .setDescription("The amount of messages you want to clear")
+                .setDescription("The amount of messages you want to delete")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["amount.description"])
                 .setMinValue(1)
                 .setMaxValue(100)

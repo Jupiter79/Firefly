@@ -2,33 +2,30 @@
   "commands": {
     "avatar": {
       "meta": {
-        "description": "Zeigt dir das Profilbild von einem Benutzer an",
-        "target": "Der Benutzer, von dem du das Profilbild sehen möchtest",
-        "extension": "dateiendung",
-        "extension.description": "Das Format, in dem du das Profilbild haben möchtest"
+        "description": "Zeigen Sie den Avatar eines Benutzers",
+        "target": "Der Benutzer, dessen Avatar Sie anzeigen möchten",
+        "extension.description": "Das Dateiformat, in dem Sie den Avatar haben möchten"
       }
     },
     "clear": {
       "meta": {
-        "description": "Lösche Nachrichten aus einem Textkanal",
-        "amount": "anzahl",
-        "amount.description": "Die Anzahl der Nachrichten, die gelöscht werden sollen"
+        "description": "Nachrichten eines Kanals löschen",
+        "amount.description": "Die Anzahl der Nachrichten, die Sie löschen möchten"
       },
       "content": {
-        "error": "Nachrichten, die älter als 14 Tage sind, können nicht gelöscht werden"
+        "error": "Die Nachrichten sind älter als 14 Tage und können daher nicht gelöscht werden"
       }
     },
     "coinflip": {
       "meta": {
-        "description": "Werfe eine Münze",
-        "opponent": "gegner",
-        "opponent.description": "Der Gegner, gegen den du spielen willst"
+        "description": "Eine Münze werfen",
+        "opponent.description": "Der Gegner, gegen den Sie spielen möchten"
       },
       "content": {
         "name": "Münzwurf",
         "result": "Ergebnis",
-        "heads": "Kopf",
-        "tails": "Zahl",
+        "heads": "Köpfe",
+        "tails": "Schwänze",
         "players": "Spieler",
         "winner": "Gewinner",
         "error": "Du kannst nicht gegen dich selbst spielen"
@@ -36,94 +33,90 @@
     },
     "config": {
       "meta": {
-        "description": "Passe die Bot-Einstellungen für diesen Server an",
-        "welcome": "willkommen",
-        "welcome.description": "Setze einen Willkommens-Kanal, indem neue Server-Mitglieder begrüßt werden",
-        "welcome.view": "anzeigen",
-        "welcome.view.description": "Zeigt den aktuellen Willkommens-Kanal an",
-        "welcome.define": "setzen",
-        "welcome.define.description": "Setze einen Willkommens-Kanal, in dem neue Server-Mitglieder begrüßt werden",
-        "welcome.channel": "kanal",
-        "welcome.channel.description": "Der Kanal, in dem neue Server-Mitglieder begrüßt werden sollen",
-        "welcome.reset": "zurücksetzen",
-        "welcome.reset.description": "Setzte den Willkommens-Kanal zurück, sodass keine neuen Server-Mitglieder begrüßt werden",
-        "counting": "zählen",
-        "counting.description": "Ein Raufzähl-Spiel bei dem es darum geht, immer eines dazuzuzählen",
-        "counting.view": "anzeigen",
-        "counting.view.description": "Zeigt den aktuellen Zählen-Kanal an",
-        "counting.define": "setzen",
-        "counting.define.description": "Setze einen Zählen-Kanal in dem das Spiel gespielt werden kann",
-        "counting.channel": "kanal",
-        "counting.channel.description": "Der Kanal, in dem das Spiel gespielt werden kann",
-        "counting.reset": "zurücksetzen",
-        "counting.reset.description": "Setzt den Zählen-Kanal zurück, sodass nicht mehr gespielt werden kann"
+        "description": "Ändern Sie die Konfiguration des Bots für diesen Server",
+        "language.description": "Zeigen Sie die Sprache für diesen Server an oder ändern Sie sie",
+        "language.language.description": "Die Sprache, die Sie für diesen Server festlegen möchten",
+        "welcome.description": "Definieren Sie einen Willkommenskanal, in dem neue Benutzer begrüßt werden sollen",
+        "welcome.view.description": "Zeigt den aktuellen Begrüßungskanal an",
+        "welcome.define.description": "Definieren Sie einen Kanal, in dem neue Benutzer begrüßt werden sollen",
+        "welcome.channel.description": "Der Kanal, in dem neue Benutzer begrüßt werden sollen",
+        "welcome.reset.description": "Setzen Sie den Willkommenskanal zurück, damit neue Benutzer nicht mehr begrüßt werden",
+        "counting.description": "Definieren Sie einen Zähl-(Spiel-)Kanal, in dem Benutzer hochzählen können",
+        "counting.view.description": "Zeigt den aktuellen Zählkanal an",
+        "counting.define.description": "Definieren Sie einen Zählkanal, in dem das Zählspiel gespielt werden kann",
+        "counting.channel.description": "Der Kanal, in dem Benutzer hochzählen können",
+        "counting.reset.description": "Setzen Sie den Zählspielkanal zurück"
       },
       "content": {
-        "welcome.no_defined": "Es wurde noch kein Willkommens-Kanal festgelegt",
-        "welcome.current_channel": "Der aktuelle Willkommens-Kanal ist: %channel%",
-        "welcome.already_defined": "Das ist bereits der Willkommens-Kanal",
-        "welcome.success_set": "Der Willkommens-Kanal ist nun %channel%",
-        "welcome.success_reset": "Der Willkommens-Kanal wurde erfolgreich zurückgesetzt!",
-        "counting.no_defined": "Es wurde noch kein Zählen-Kanal festgelegt",
-        "counting.current_channel": "Der aktuelle Zählen-Kanal ist: %channel%",
-        "counting.already_defined": "Das ist bereits der Zählen-Kanal",
-        "counting.success_set": "Der Zählen-Kanal ist nun %channel%. Achtung! Es können nur mehr Zahlen in diesen Kanal gesendet werden!",
-        "counting.success_reset": "Der Zählen-Kanal wurde erfolgreich zurückgesetzt!"
+        "language.already": "Das ist schon die Sprache!",
+        "language.success_set": "Die Sprache wurde erfolgreich eingestellt {{language}}",
+        "welcome.no_defined": "Es gibt keinen definierten Willkommenskanal",
+        "welcome.current_channel": "Der aktuelle Willkommenskanal ist {{channel}}",
+        "welcome.already_defined": "Dies ist bereits der Willkommenskanal!",
+        "welcome.success_set": "Der Willkommenskanal wurde erfolgreich eingestellt {{channel}}",
+        "welcome.success_reset": "Der Willkommenskanal wurde erfolgreich zurückgesetzt!",
+        "counting.no_defined": "Es gibt keinen definierten Zählkanal",
+        "counting.current_channel": "Der aktuelle Zählkanal ist {{channel}}",
+        "counting.already_defined": "Dies ist bereits der Zählkanal!",
+        "counting.success_set": "Der Zählkanal wurde erfolgreich eingestellt {{channel}}. ",
+        "counting.success_reset": "Der Zählkanal wurde erfolgreich zurückgesetzt!"
       }
     },
     "countdown": {
       "meta": {
-        "description": "Zeigt dir die verbleibende Zeit zu gewissen Ereignissen an",
-        "date": "datum",
-        "date.description": "Das Datum, bis zu dem die verbleibende Zeit angezeigt werden soll"
+        "description": "Zeigt Ihnen die verbleibende Zeit bis zu bestimmten Daten",
+        "date.description": "Das Datum, dessen verbleibende Zeit angezeigt werden soll"
       },
       "content": {
-        "invalid_date": "Ungültiges Datum! Bitte im folgenden Format angeben: `DD.MM.YYYY`",
-        "error_future": "Bitte gebe ein Datum in der Zukunft an",
-        "defined_date": "Festgelegtes Datum",
-        "remaining_time": "Verbleibende Zeit",
+        "invalid_date": "Ungültiges Datum eingegeben! ",
+        "error_future": "Bitte geben Sie ein Datum in der Zukunft ein",
+        "defined_date": "Definiertes Datum",
+        "remaining_time": "Zeit",
         "events": {
           "christmas": "🎄 Weihnachten",
           "newyear": "🎆 Neujahr",
           "valentine": "💝 Valentinstag",
-          "birthday_firefly": "Geburtstag von Firefly"
+          "birthday_firefly": "Glühwürmchen Geburtstag"
         },
-        "default_countdowns": "Standard Countdowns",
-        "today": "`Heute`"
+        "default_countdowns": "Standard-Countdowns",
+        "today": "„Heute“."
+      }
+    },
+    "help": {
+      "meta": {
+        "description": "Zeigt alle Befehle dieses Bots an"
+      },
+      "content": {
+        "embed_title.guild": "Befehle von Firefly",
+        "embed_title.private": "Private Befehle von Firefly"
       }
     },
     "quote": {
       "meta": {
-        "name": "zitat",
-        "description": "Erstellt ein Bild von einem Zitat",
-        "user": "benutzer",
-        "user.description": "Erstelle ein Zitat von einem Discord-Benutzer",
-        "user.user.description": "Der Autor des Zitates",
-        "user.text.description": "Der Text des Zitates",
-        "person.description": "Erstellt ein Zitat von einer echten Person",
-        "person.person.description": "Der Name der Person (z. B. Vor und Nachname)",
-        "person.text.description": " Der Text des Zitates",
-        "person.image": "bild",
-        "person.image.description": " Ein Link zum Bild dieser Person",
-        "random": "zufällig",
-        "random.description": "Erstellt ein zufälliges Zitat auf Englisch"
+        "description": "Erzeugt ein Bild mit einem Zitat",
+        "user.description": "Erzeugt ein Zitat von einem Discord-Benutzer",
+        "user.user.description": "Der Autor des Zitats",
+        "user.text.description": "Der Text des Zitats",
+        "person.description": "Erzeugt ein Zitat von einer realen Person",
+        "person.person.description": "Der Name dieser Person",
+        "person.text.description": " Der Text des Zitats",
+        "person.image.description": " Die URL des Bildes, das Sie für dieses Angebot verwenden möchten",
+        "random.description": "Erzeugt ein zufälliges Zitat"
       },
       "content": {
-        "valid_formats": "Es werden nur die folgenden Formate unterstützt: %formats%",
-        "error_fetch_image": "Das Bild konnte nicht gefunden werden",
-        "filename": "zitat",
-        "error": "Irgend etwas ist schiefgelaufen!"
+        "valid_formats": "Nur {{formats}} Bildlinks sind gültig!",
+        "error_fetch_image": "Bild kann nicht abgerufen werden!",
+        "filename": "zitieren",
+        "error": "Fehler etwas ist schief gelaufen!"
       }
     },
     "random": {
       "meta": {
-        "name": "zufall",
-        "description": "Sendet eine zufällige Sache, die ausgewählt werden kann",
-        "type": "typ",
-        "type.description": "Die Sache, von der du ein zufälliges Element bekommen möchtest"
+        "description": "Sendet eine zufällige Sache von dem, was Sie definiert haben",
+        "type.description": "Das, was Sie randomisieren möchten"
       },
       "content": {
-        "answer": "Die Antwort ist: %answer%"
+        "answer": "Die Antwort ist: {{answer}}"
       }
     }
   }

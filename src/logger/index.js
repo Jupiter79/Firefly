@@ -25,13 +25,17 @@ module.exports = {
     newCommand(interaction) {
         if (interaction.user.id == process.env.LOGGER_IGNORE) return;
 
+        var langCode = interaction.dbGuild?.language ?? interaction.locale;
+        var language = global.VALID_LANGUAGES.find(x => x.value == langCode).name;
+
         var embed = new EmbedBuilder()
             .setTitle("Executed Command")
             .setColor(0x00ff00)
             .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() })
             .addFields(
-                { name: "Guild", value: interaction.guild ? `**ID**: ${interaction.guild.id}\n**Name**: ${interaction.guild.name}` : "PRIVATE CHAT" },
-                { name: "Command", value: `\`${interaction.toString()}\`` }
+                { name: "Guild", value: `**ID**: ${interaction.guild.id}\n**Name**: ${interaction.guild.name}` },
+                { name: "Command", value: `\`${interaction.toString()}\`` },
+                { name: "Language", value: `\`${language}\`` }
             )
             .setTimestamp();
 

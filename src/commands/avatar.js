@@ -4,20 +4,19 @@ const name = "avatar";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName(name)
-        .setDescription('Shows you the avatar of someone')
+        .setDescription('Show the avatar of an user')
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .addUserOption(option =>
             option
                 .setName("target")
-                .setDescription("The user of which you want to show the avatar")
+                .setDescription("The user which you want to show the avatar of")
                 .setDescriptionLocalizations(global.COMMAND_META[name].target)
                 .setRequired(true)
         )
         .addStringOption(option =>
             option
                 .setName("extension")
-                .setNameLocalizations(global.COMMAND_META[name].extension)
-                .setDescription("The format in which you want to show the avatar")
+                .setDescription("The file format you want to have the avatar in")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["extension.description"])
                 .addChoices(
                     { name: "PNG", value: "jpg" },

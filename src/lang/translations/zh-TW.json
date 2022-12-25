@@ -1,0 +1,123 @@
+{
+  "commands": {
+    "avatar": {
+      "meta": {
+        "description": "顯示用戶頭像",
+        "target": "您要顯示其頭像的用戶",
+        "extension.description": "你想要頭像的文件格式"
+      }
+    },
+    "clear": {
+      "meta": {
+        "description": "刪除頻道消息",
+        "amount.description": "您要刪除的郵件數量"
+      },
+      "content": {
+        "error": "消息超過 14 天，因此無法刪除"
+      }
+    },
+    "coinflip": {
+      "meta": {
+        "description": "拋硬幣",
+        "opponent.description": "你想對戰的對手"
+      },
+      "content": {
+        "name": "拋硬幣",
+        "result": "結果",
+        "heads": "元首",
+        "tails": "尾巴",
+        "players": "球員",
+        "winner": "優勝者",
+        "error": "你不能和自己比賽"
+      }
+    },
+    "config": {
+      "meta": {
+        "description": "更改此服務器的機器人配置",
+        "language.description": "查看或更改此服務器的語言",
+        "language.language.description": "您要為此服務器設置的語言",
+        "welcome.description": "定義歡迎新用戶的歡迎頻道",
+        "welcome.view.description": "顯示當前的歡迎頻道",
+        "welcome.define.description": "定義應歡迎新用戶的頻道",
+        "welcome.channel.description": "迎接新用戶的渠道",
+        "welcome.reset.description": "重置歡迎頻道，不再歡迎新用戶",
+        "counting.description": "定義一個計數（遊戲）通道，用戶可以在其中計數",
+        "counting.view.description": "顯示當前計數通道",
+        "counting.define.description": "定義一個可以玩計數遊戲的計數通道",
+        "counting.channel.description": "用戶可以統計的通道",
+        "counting.reset.description": "重置計數遊戲頻道"
+      },
+      "content": {
+        "language.already": "這已經是語言了！",
+        "language.success_set": "語言已成功設置為 {{language}}",
+        "welcome.no_defined": "沒有定義的歡迎頻道",
+        "welcome.current_channel": "當前的歡迎頻道是 {{channel}}",
+        "welcome.already_defined": "這已經是歡迎頻道了！",
+        "welcome.success_set": "歡迎頻道已成功設置為 {{channel}}",
+        "welcome.success_reset": "歡迎頻道已成功重置！",
+        "counting.no_defined": "沒有定義的計數通道",
+        "counting.current_channel": "當前計數通道為 {{channel}}",
+        "counting.already_defined": "這已經是計數通道了！",
+        "counting.success_set": "計數通道已成功設置為 {{channel}}.",
+        "counting.success_reset": "計數通道已成功重置！"
+      }
+    },
+    "countdown": {
+      "meta": {
+        "description": "顯示到特定日期的剩餘時間",
+        "date.description": "您要顯示剩餘時間的日期"
+      },
+      "content": {
+        "invalid_date": "輸入的日期無效！",
+        "error_future": "請輸入將來的日期",
+        "defined_date": "定義日期",
+        "remaining_time": "時間",
+        "events": {
+          "christmas": "🎄 聖誕節",
+          "newyear": "🎆新年",
+          "valentine": "💝情人節",
+          "birthday_firefly": "螢火蟲生日"
+        },
+        "default_countdowns": "默認倒計時",
+        "today": "`今天`"
+      }
+    },
+    "help": {
+      "meta": {
+        "description": "顯示此機器人的所有命令"
+      },
+      "content": {
+        "embed_title.guild": "螢火蟲的命令",
+        "embed_title.private": "螢火蟲的私有命令"
+      }
+    },
+    "quote": {
+      "meta": {
+        "description": "生成帶有引號的圖像",
+        "user.description": "生成來自 Discord 用戶的報價",
+        "user.user.description": "報價的作者",
+        "user.text.description": "報價的文本",
+        "person.description": "生成來自真人的報價",
+        "person.person.description": "那個人的名字",
+        "person.text.description": " 報價的文本",
+        "person.image.description": " 您要用於此報價的圖像的 URL",
+        "random.description": "生成隨機報價"
+      },
+      "content": {
+        "valid_formats": "僅有的 {{formats}} 圖片鏈接有效！",
+        "error_fetch_image": "無法獲取圖像！",
+        "filename": "引用",
+        "error": "錯誤出錯了！"
+      }
+    },
+    "random": {
+      "meta": {
+        "description": "發送您定義的隨機內容",
+        "type.description": "你想要隨機化的東西"
+      },
+      "content": {
+        "answer": "答案是： {{answer}}"
+      }
+    }
+  }
+}

@@ -1,11 +1,26 @@
 {
   "commands": {
+    "avatar": {
+      "meta": {
+        "description": "Show the avatar of an user",
+        "target": "The user which you want to show the avatar of",
+        "extension.description": "The file format you want to have the avatar in"
+      }
+    },
     "clear": {
+      "meta": {
+        "description": "Delete messages of a channel",
+        "amount.description": "The amount of messages you want to delete"
+      },
       "content": {
         "error": "The messages are older than 14 days, thus they cannot be deleted"
       }
     },
     "coinflip": {
+      "meta": {
+        "description": "Flip a coin",
+        "opponent.description": "The opponent you want to play against"
+      },
       "content": {
         "name": "Coin Flip",
         "result": "Result",
@@ -17,20 +32,41 @@
       }
     },
     "config": {
+      "meta": {
+        "description": "Change the config of the bot for this server",
+        "language.description": "View or change the language for this server",
+        "language.language.description": "The language you want to set for this server",
+        "welcome.description": "Define a welcome-channel in which new users should be greeted",
+        "welcome.view.description": "Shows the current welcome channel",
+        "welcome.define.description": "Define a channel in which new users should be greeted",
+        "welcome.channel.description": "The channel in which new users should be greeted",
+        "welcome.reset.description": "Reset the welcome channel so new users won't be greeted anymore",
+        "counting.description": "Define a counting (game) channel in which users can count up",
+        "counting.view.description": "Shows the current counting channel",
+        "counting.define.description": "Define a counting channel where the counting game can be played",
+        "counting.channel.description": "The channel in which users can count up",
+        "counting.reset.description": "Reset the counting game channel"
+      },
       "content": {
+        "language.already": "This is already the language!",
+        "language.success_set": "The language has been successfully set to {{language}}",
         "welcome.no_defined": "There's no defined welcome channel",
-        "welcome.current_channel": "The current welcome-channel is %channel%",
+        "welcome.current_channel": "The current welcome-channel is {{channel}}",
         "welcome.already_defined": "This is already the welcome channel!",
-        "welcome.success_set": "The welcome-channel has been successfully set to %channel%",
+        "welcome.success_set": "The welcome-channel has been successfully set to {{channel}}",
         "welcome.success_reset": "The welcome-channel has been successfully resetted!",
         "counting.no_defined": "There's no defined counting channel",
-        "counting.current_channel": "The current counting channel is %channel%",
+        "counting.current_channel": "The current counting channel is {{channel}}",
         "counting.already_defined": "This is already the counting channel!",
-        "counting.success_set": "The counting-channel has been successfully set to %channel%. Please note that only numbers can be send in that channel!",
+        "counting.success_set": "The counting-channel has been successfully set to {{channel}}. Please note that only numbers can be send in that channel!",
         "counting.success_reset": "The counting-channel has been successfully resetted!"
       }
     },
     "countdown": {
+      "meta": {
+        "description": "Shows you the remaining time till specific dates",
+        "date.description": "The date you want to show the remaining time of"
+      },
       "content": {
         "invalid_date": "Invalid date entered! Please use the following format: `DD.MM.YYYY`",
         "error_future": "Please enter a date in the future",
@@ -46,17 +82,41 @@
         "today": "`Today`"
       }
     },
-    "quote": {
+    "help": {
+      "meta": {
+        "description": "Shows all commands of this bot"
+      },
       "content": {
-        "valid_formats": "Only %formats% image links are valid!",
+        "embed_title.guild": "Commands of Firefly",
+        "embed_title.private": "Private Commands of Firefly"
+      }
+    },
+    "quote": {
+      "meta": {
+        "description": "Generates a image with a quote",
+        "user.description": "Generates a quote from a Discord user",
+        "user.user.description": "The author of the quote",
+        "user.text.description": "The text of the quote",
+        "person.description": "Generates a quote from a real person",
+        "person.person.description": "The name of that person",
+        "person.text.description": " The text of the quote",
+        "person.image.description": " The URL of the image you want to use for this quote",
+        "random.description": "Generates a random quote"
+      },
+      "content": {
+        "valid_formats": "Only {{formats}} image links are valid!",
         "error_fetch_image": "Cannot get image!",
         "filename": "quote",
         "error": "Error something went wrong!"
       }
     },
     "random": {
+      "meta": {
+        "description": "Sends a random thing of what you defined",
+        "type.description": "The thing you want to randomize"
+      },
       "content": {
-        "answer": "The answer is: %answer%"
+        "answer": "The answer is: {{answer}}"
       }
     }
   }
