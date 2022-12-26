@@ -23,7 +23,7 @@ module.exports = {
     },
 
     newCommand(interaction) {
-        if (interaction.user.id == process.env.LOGGER_IGNORE) return;
+        if (interaction.user.id == process.env.OWNER) return;
 
         var langCode = interaction.dbGuild?.language ?? interaction.locale;
         var language = global.VALID_LANGUAGES.find(x => x.value == langCode).name;

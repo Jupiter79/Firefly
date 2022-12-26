@@ -32,6 +32,9 @@ npm run commands_delete
 ## Environmental Variables
 
 ```
+# General
+OWNER=""
+
 # Discord
 CLIENT_ID=""
 BOT_TOKEN=""
@@ -49,5 +52,4 @@ DATABASE_URL=""
 # Logger
 LOGGER_GUILD=""
 LOGGER_CHANNEL=""
-LOGGER_IGNORE=""
 ```
