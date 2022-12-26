@@ -11,21 +11,36 @@ module.exports = {
         .setDescriptionLocalizations(global.COMMAND_META[name].description)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDMPermission(false)
-        .addSubcommand(subcommand =>
-            subcommand
+        .addSubcommandGroup(subcommandgroup =>
+            subcommandgroup
                 .setName("language")
                 .setDescription("View or change the language for this server")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["language.description"])
-                .addStringOption(option => {
-                    option
-                        .setName("language")
-                        .setDescription("The language you want to set for this server")
-                        .setDescriptionLocalizations(global.COMMAND_META[name]["language.language.description"])
-
-                    global.VALID_LANGUAGES.forEach(lang => option.addChoices({ name: lang.name, value: lang.value }));
-
-                    return option;
-                })
+                .addSubcommand(subcommand =>
+                    subcommand
+                        .setName("set")
+                        .setDescription("Change the language for this server")
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["language.set.description"])
+                        .addStringOption(option =>
+                            option
+                                .setName("language")
+                                .setRequired(true)
+                                .setDescription("The language you want the bot to speak in")
+                                .setDescriptionLocalizations(global.COMMAND_META[name]["language.set.language.description"])
+                        )
+                )
+                .addSubcommand(subcommand =>
+                    subcommand
+                        .setName("list")
+                        .setDescription("View a list of all possible languages which this bot supports")
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["language.list.description"])
+                )
+                .addSubcommand(subcommand =>
+                    subcommand
+                        .setName("view")
+                        .setDescription("Shows the current language")
+                        .setDescriptionLocalizations(global.COMMAND_META[name]["language.view.description"])
+                )
         )
         .addSubcommandGroup(subcommandgroup =>
             subcommandgroup.
@@ -97,26 +112,32 @@ module.exports = {
             where: { id: interaction.guild.id }
         })
 
-        if (subcommand == "language") {
-            var language = interaction.options.getString("language");
+        if (subcommandgroup == "language") {
+            if (subcommand == "set") {
+                var language = interaction.options.getString("language");
 
-            if (language) {
-                var languageName = global.VALID_LANGUAGES.find(x => x.value == language).name;
+                var languageName = global.VALID_LANGUAGES.find(x => x.value == language)?.name;
 
-                if (language == guild.language) return interaction.reply({ content: interaction.translation["language.already"], ephemeral: true });
-                else {
-                    await prisma.guild.update({
-                        where: {
-                            id: interaction.guild.id
-                        },
-                        data: {
-                            language: language
-                        }
-                    });
+                if (languageName) {
+                    if (language == guild.language) return interaction.reply({ content: interaction.translation["language.already"], ephemeral: true });
+                    else {
+                        await prisma.guild.update({
+                            where: {
+                                id: interaction.guild.id
+                            },
+                            data: {
+                                language: language
+                            }
+                        });
 
-                    await interaction.reply(interaction.translation["language.success_set"].replace("{{language}}", `\`${languageName}\``));
-                }
-            } else await interaction.reply(`The current language is \`${global.VALID_LANGUAGES.find(x => x.value == interaction.dbGuild.language).name}\``)
+                        await interaction.reply(interaction.translation["language.success_set"].replace("{{language}}", `\`${languageName}\``));
+                    }
+                } else await interaction.reply(interaction.translation["language.invalid_lang"])
+            } else if (subcommand == "list") {
+                await interaction.reply(global.VALID_LANGUAGES.map(x => `${x.name} => **${x.value}**`).join("\n"));
+            } else if (subcommand == "view") {
+                await interaction.reply(interaction.translation["language.current_lang"].replace("{{lang}}", global.VALID_LANGUAGES.find(x => x.value == interaction.dbGuild.language).name))
+            }
         } else if (subcommandgroup == "welcome") {
             if (subcommand == "view") {
                 if (!guild?.welcome_channel) return await interaction.reply(interaction.translation["welcome.no_defined"])

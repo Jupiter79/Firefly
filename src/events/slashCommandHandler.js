@@ -19,7 +19,7 @@ module.exports = {
         if (interaction.guild) interaction.dbGuild = await Database.getGuild(interaction);
 
         var usedLanguage = Lang.getUsedLanguage(interaction);
-
+        
         interaction.translation = usedLanguage.commands[interaction.commandName]?.content;
 
         try {

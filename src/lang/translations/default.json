@@ -1,4 +1,13 @@
 {
+  "events": {
+    "greetUser": "Hey {{user}}, welcome to {{guild}}!",
+    "countingGame": {
+      "only_numbers": "This is a counting channel, you can only write numbers here!",
+      "other_user": "An other user must type the next number",
+      "start_with_one": "You need to start with the number 1",
+      "reset": "{{user}} broke the record of {{number}}!\nThe number has been reset to 0`"
+    }
+  },
   "commands": {
     "avatar": {
       "meta": {
@@ -35,7 +44,10 @@
       "meta": {
         "description": "Change the config of the bot for this server",
         "language.description": "View or change the language for this server",
-        "language.language.description": "The language you want to set for this server",
+        "language.set.description": "Change the language for this server",
+        "language.set.language.description": "The language you want the bot to speak in",
+        "language.list.description": "View a list of all possible languages which this bot supports",
+        "language.view.description": "Shows the current language",
         "welcome.description": "Define a welcome-channel in which new users should be greeted",
         "welcome.view.description": "Shows the current welcome channel",
         "welcome.define.description": "Define a channel in which new users should be greeted",
@@ -50,6 +62,8 @@
       "content": {
         "language.already": "This is already the language!",
         "language.success_set": "The language has been successfully set to {{language}}",
+        "language.invalid_lang": "This is an invalid language! Check the spelling (also uppercase or lowercase) and use the language code",
+        "language.current_lang": "The current language is {{lang}}",
         "welcome.no_defined": "There's no defined welcome channel",
         "welcome.current_channel": "The current welcome-channel is {{channel}}",
         "welcome.already_defined": "This is already the welcome channel!",
@@ -89,6 +103,14 @@
       "content": {
         "embed_title.guild": "Commands of Firefly",
         "embed_title.private": "Private Commands of Firefly"
+      }
+    },
+    "meme": {
+      "meta": {
+        "description": "Generates a meme from the Internet"
+      },
+      "content": {
+        "posted_by": "Posted by {{author}}"
       }
     },
     "quote": {

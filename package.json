@@ -7,11 +7,13 @@
     "start": "node src/main.js",
     "dev": "set NODE_ENV=development&&npm start",
     "commands_update": "node src/scripts/deploy_commands.js",
-    "commands_delete": "node src/scripts/delete_all_commands.js"
+    "commands_delete": "node src/scripts/delete_all_commands.js",
+    "translate": "node src/scripts/create_translation_files.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@parvineyvazov/json-translator": "^1.4.2",
     "@prisma/client": "^4.7.1",
     "canvas": "^2.10.2",
     "discord.js": "^14.7.1",
