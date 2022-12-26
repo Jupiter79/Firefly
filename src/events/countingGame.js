@@ -9,14 +9,14 @@ const LANG = global.EVENT_META["countingGame"];
 module.exports = {
     event: Events.MessageCreate,
     async handle(message) {
-        let USED_LANG = LANG[await Database.getGuildLanguage(message.guild)];
-
         if (!message.author.bot) {
             var guild = await prisma.guild.findUnique({
                 where: { id: message.guild.id }
             })
 
             if (guild?.counting_channel == message.channel.id) {
+                let USED_LANG = LANG[await Database.getGuildLanguage(message.guild)];
+
                 var number = parseInt(message.content);
 
                 if (isNaN(number)) {
