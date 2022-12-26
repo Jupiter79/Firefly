@@ -1,20 +1,41 @@
 const fs = require('node:fs');
 
 global.LANGUAGES = {};
+
+global.EVENT_META = {};
 global.COMMAND_META = {};
+
 global.VALID_LANGUAGES = [
-    { name: "English [DEFAULT]", value: "en" },
-    { name: "German (Deutsch)", value: "de" },
-    { name: "French (Français)", value: "fr" },
-    { name: "Dutch (Nederlands)", value: "nl" },
-    { name: "Russian (Русский)", value: "ru" },
-    { name: "Spanish (Español)", value: "es-ES" },
-    { name: "Danish (Dansk)", value: "da" },
-    { name: "Italian (Italiano)", value: "it" },
-    { name: "Greek (Ελληνικά)", value: "el" },
-    { name: "Bulgarian (български)", value: "bg" },
-    { name: "Chinese China (中国中国)", value: "zh-CN" },
-    { name: "Chinese Taiwan (中國中國)", value: "zh-TW" }
+    { name: "🇺🇸 English [DEFAULT]", value: "en" },
+    { name: "🇮🇩 Indonesian (Bahasa Indonesia)", value: "id" },
+    { name: "🇩🇰 Danish (Dansk)", value: "da" },
+    { name: "🇩🇪 German (Deutsch)", value: "de" },
+    { name: "🇪🇸 Spanish (Español)", value: "es-ES" },
+    { name: "🇫🇷 French (Français)", value: "fr" },
+    { name: "🇭🇷 Croatian (Hrvatski)", value: "hr" },
+    { name: "🇮🇹 Italian (Italiano)", value: "it" },
+    { name: "🇱🇹 Lithuanian (Lietuviškai)", value: "lt" },
+    { name: "🇭🇺 Hungarian (Magyar)", value: "hu" },
+    { name: "🇳🇱 Dutch (Nederlands)", value: "nl" },
+    { name: "🇳🇴 Norwegian (Norsk)", value: "no" },
+    { name: "🇵🇱 Polish (Polski)", value: "pl" },
+    { name: "🇧🇷 Portuguese, Brazilian (Português do Brasil)", value: "pt-BR" },
+    { name: "🇷🇴 Romanian, Romania (Română)", value: "ro" },
+    { name: "🇫🇮 Finnish (Suomi)", value: "fi" },
+    { name: "🇸🇪 Swedish (Svenska)", value: "sv-SE" },
+    { name: "🇻🇳 Vietnamese (Tiếng Việt)", value: "vi" },
+    { name: "🇹🇷 Turkish (Türkçe)", value: "tr" },
+    { name: "🇨🇿 Czech (Čeština)", value: "cs" },
+    { name: "🇬🇷 Greek (Ελληνικά)", value: "el" },
+    { name: "🇧🇬 Bulgarian (български)", value: "bg" },
+    { name: "🇷🇺 Russian (Pусский)", value: "ru" },
+    { name: "🇺🇦 Ukrainian (Українська)", value: "uk" },
+    { name: "🇮🇳 Hindi (हिन्दी)", value: "hi" },
+    { name: "🇹🇭 Thai (ไทย)", value: "th" },
+    { name: "🇨🇳 Chinese, China (中文)", value: "zh-CN" },
+    { name: "🇯🇵 Japanese (日本語)", value: "ja" },
+    { name: "🇹🇼 Chinese, Taiwan (繁體中文)", value: "zh-TW" },
+    { name: "🇰🇷 Korean (한국어)", value: "ko" }
 ];
 
 module.exports = {
@@ -30,7 +51,15 @@ module.exports = {
 
         global.LANGUAGES.list.filter(x => x != "default").forEach(lang => {
             var sLang = global.LANGUAGES[lang];
+
+            var events = Object.entries(sLang.events);
             var commands = Object.entries(sLang.commands);
+
+            events.forEach(event => {
+                if (!global.EVENT_META[event[0]]) global.EVENT_META[event[0]] = {};
+
+                global.EVENT_META[event[0]][lang] = event[1];
+            })
 
             commands.filter(x => Object.keys(x[1].meta).length > 0).forEach(command => {
                 var metas = Object.entries(command[1].meta);

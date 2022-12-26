@@ -20,5 +20,12 @@ module.exports = {
         if (!entry) entry = await this.createGuild(interaction.guild);
 
         return entry;
+    },
+    async getGuildLanguage(guild) {
+        var entry = await this.fetchEntry(guild);
+
+        if (!entry) entry = await this.createGuild(interaction.guild);
+
+        return entry.language;
     }
 }
