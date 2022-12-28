@@ -7,6 +7,7 @@ const path = require('node:path');
 const intents = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent];
 
 const client = new Client({ intents: intents });
+global.CLIENT = client;
 
 require("./lang/index.js").init();
 require("./web/index.js");
