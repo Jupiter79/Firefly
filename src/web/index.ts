@@ -22,14 +22,14 @@ if (process.env.NODE_ENV != "development") {
     httpsServer.listen(443);
 } else httpServer.listen(81);
 
-var subdomains = {};
+var subdomains: any = {};
 var subdomainFiles = fs.readdirSync(__dirname + "/subdomains");
 
-subdomainFiles.forEach(subdomain => {
+subdomainFiles.forEach((subdomain: string) => {
     subdomains[subdomain] = require(`${__dirname}/subdomains/${subdomain}/index.js`)();
 })
 
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
     var subdomainText = req.subdomains[0] ?? "root";
 
     var subdomain = subdomains[subdomainText];

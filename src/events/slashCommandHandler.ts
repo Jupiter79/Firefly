@@ -1,3 +1,5 @@
+import { ChatInputCommandInteraction } from "discord.js";
+
 const { Events } = require('discord.js');
 
 const Logger = require("../logger/index.js");
@@ -6,7 +8,7 @@ const Lang = require("../lang/index.js");
 
 module.exports = {
     event: Events.InteractionCreate,
-    async handle(interaction) {
+    async handle(interaction: ChatInputCommandInteraction) {
         if (!interaction.isChatInputCommand()) return;
 
         const command = interaction.client.commands.get(interaction.commandName);

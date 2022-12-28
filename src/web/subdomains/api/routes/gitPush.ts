@@ -1,8 +1,8 @@
-const { exec } = require('child_process');
-const crypto = require('crypto');
+import { exec } from 'child_process';
+import crypt from 'crypto';
 
-var validate_secret = (signature, payload) => {
-    var hmac = crypto.createHmac('sha1', process.env.GITHUB_WEBHOOK_SECRET);
+var validate_secret = (signature: any, payload: any) => {
+    var hmac = crypt.createHmac('sha1', process.env.GITHUB_WEBHOOK_SECRET);
     hmac.update(JSON.stringify(payload));
     var calculatedSignature = 'sha1=' + hmac.digest('hex');
 
@@ -12,7 +12,7 @@ var validate_secret = (signature, payload) => {
 module.exports = {
     path: "/git/push",
     method: "POST",
-    init: (req, res) => {
+    init: (req: any, res: any) => {
         if (validate_secret(req.headers["x-hub-signature"], req.body) && req.body.ref == "refs/heads/main") {
             res.json({ code: 200, msg: "OK" });
 

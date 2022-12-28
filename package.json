@@ -15,12 +15,14 @@
   "dependencies": {
     "@parvineyvazov/json-translator": "^1.4.2",
     "@prisma/client": "^4.7.1",
+    "@types/node": "^18.11.18",
     "canvas": "^2.10.2",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node-fetch": "^2.6.7",
-    "prisma": "^4.7.1"
+    "prisma": "^4.7.1",
+    "typescript": "^4.9.4"
   },
   "prisma": {
     "schema": "src/database/schema.prisma"

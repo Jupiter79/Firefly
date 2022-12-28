@@ -1,10 +1,9 @@
-const fs = require('fs');
 var express = require('express');
 
 var routeFiles = fs.readdirSync(__dirname + "/routes");
-var routes = {};
+var routes: any = {};
 
-routeFiles.forEach(routePath => {
+routeFiles.forEach((routePath: string) => {
     var route = require(__dirname + "/routes/" + routePath);
 
     routes[route.path] = { method: route.method, init: route.init, }
@@ -13,9 +12,9 @@ routeFiles.forEach(routePath => {
 module.exports = () => {
     var router = express.Router();
 
-    router.get("/", (req, res) => res.json({ status: 200, msg: "Welcome to the Firefly API!" }))
+    router.get("/", (req: any, res: any) => res.json({ status: 200, msg: "Welcome to the Firefly API!" }))
 
-    router.use("/", (req, res, next) => {
+    router.use("/", (req: any, res: any, next: any) => {
         var route = routes[req.path];
         var method = req.method;
 
@@ -25,7 +24,7 @@ module.exports = () => {
         } else next();
     })
 
-    router.use("/", (req, res) => {
+    router.use("/", (req: any, res: any) => {
         res.json({ status: 404, msg: "Not found!" });
     })
 

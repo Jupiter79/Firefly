@@ -2,8 +2,8 @@ require("dotenv").config();
 
 require("../lang/index.js").init();
 
-const { REST, Routes } = require('discord.js');
-const fs = require('node:fs');
+import { REST, Routes } from 'discord.js';
+import fs from 'node:fs';
 
 const commands = [];
 const commandFiles = fs.readdirSync('src/commands').filter(file => file.endsWith('.js'));
@@ -19,7 +19,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
     try {
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-        const data = await rest.put(
+        const data: any = await rest.put(
             Routes.applicationCommands(process.env.CLIENT_ID),
             { body: commands },
         );

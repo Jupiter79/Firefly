@@ -1,8 +1,8 @@
 require("dotenv").config();
 
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
-const fs = require('node:fs');
-const path = require('node:path');
+import { Client, GatewayIntentBits, Collection } from 'discord.js';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const intents = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent];
 
@@ -17,10 +17,10 @@ client.events = new Collection();
 client.commands = new Collection();
 
 const eventsPath = path.join(__dirname, 'events');
-const eventsFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+const eventsFiles = fs.readdirSync(eventsPath).filter((file: string) => file.endsWith('.js'));
 
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.js'));
 
 
 for (const file of eventsFiles) {
@@ -45,11 +45,11 @@ for (const file of commandFiles) {
     }
 }
 
-global.COMMANDS = client.commands;
+globalThis.COMMANDS = client.commands;
 
 // HANDLE ALL EVENTS
-client.events.forEach(event => {
-    client.on(event.event, (...args) => event.handle(...args));
+client.events.forEach((event: any) => {
+    client.on(event.event, (...args: any) => event.handle(...args));
 })
 
 client.login(process.env.BOT_TOKEN);
