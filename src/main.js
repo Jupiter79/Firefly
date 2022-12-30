@@ -28,7 +28,9 @@ for (const file of eventsFiles) {
     const event = require(filePath);
 
     if ('event' in event && 'handle' in event) {
-        client.events.set(event.event, event);
+        let eventName = file.split(".")[0];
+        
+        client.events.set(eventName, event);
     } else {
         console.log(`[WARNING] The event at ${filePath} is missing a required "event" or "handle" property.`);
     }

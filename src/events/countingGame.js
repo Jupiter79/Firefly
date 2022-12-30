@@ -15,7 +15,8 @@ module.exports = {
             })
 
             if (guild?.counting_channel == message.channel.id) {
-                let USED_LANG = LANG[await Database.getGuildLanguage(message.guild)];
+                let guildLanguage = await Database.getGuildLanguage(message.guild);
+                let USED_LANG = LANG[guildLanguage == "en" ? "default" : guildLanguage];
 
                 var number = parseInt(message.content);
 

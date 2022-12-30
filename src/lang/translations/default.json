@@ -5,7 +5,7 @@
       "only_numbers": "This is a counting channel, you can only write numbers here!",
       "other_user": "An other user must type the next number",
       "start_with_one": "You need to start with the number 1",
-      "reset": "{{user}} broke the record of {{number}}!\nThe number has been reset to 0`"
+      "reset": "{{user}} broke the record of {{number}}!\nThe number has been reset to 0"
     }
   },
   "commands": {
