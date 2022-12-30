@@ -16,6 +16,15 @@
         "extension.description": "The file format you want to have the avatar in"
       }
     },
+    "banner": {
+      "meta": {
+        "description": "Show the banner of an user",
+        "target": "The user which you want to show the banner of"
+      },
+      "content": {
+        "no_banner": "The user has no banner"
+      }
+    },
     "clear": {
       "meta": {
         "description": "Delete messages of a channel",

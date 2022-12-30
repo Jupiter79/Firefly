@@ -36,7 +36,7 @@ async function makeQuote(author, text, image) {
 
     if (image) {
         try {
-            var image = await loadImage(image);
+            image = await loadImage(image);
         } catch (e) {
             return false;
         }
@@ -137,21 +137,21 @@ module.exports = {
         var subcommand = interaction.options.getSubcommand();
 
         if (subcommand == "user") {
-            var user = interaction.options.getUser("user");
-            var avatar = user.displayAvatarURL({ size: 2048, extension: "png" });
-            var text = interaction.options.getString("text");
+            let user = interaction.options.getUser("user");
+            let avatar = user.displayAvatarURL({ size: 2048, extension: "png" });
+            let text = interaction.options.getString("text");
 
             const attachment = new AttachmentBuilder(await makeQuote(user.tag, text, avatar), { name: interaction.translation.filename + '.png' })
 
             await interaction.reply({ files: [attachment] })
         } else if (subcommand == "person") {
-            var person = interaction.options.getString("person");
-            var text = interaction.options.getString("text");
-            var image = interaction.options.getString("image");
+            let person = interaction.options.getString("person");
+            let text = interaction.options.getString("text");
+            let image = interaction.options.getString("image");
 
             if (image && !VALID_URL.test(image)) return await interaction.reply({ content: interaction.translation.valid_formats.replace("{{formats}}", "PNG, JPG, GIF, SVG"), ephemeral: true });
 
-            var quote = await makeQuote(person, text, image);
+            let quote = await makeQuote(person, text, image);
 
             if (!quote) return await interaction.reply({ content: interaction.translation.error_fetch_image, ephemeral: true });
 
