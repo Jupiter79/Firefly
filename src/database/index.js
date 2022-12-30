@@ -7,7 +7,7 @@ module.exports = {
             data: { id: guild.id }
         })
 
-        return this.fetchEntry();
+        return this.fetchEntry(guild);
     },
     async fetchEntry(guild) {
         return await prisma.guild.findUnique({
