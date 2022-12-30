@@ -8,7 +8,6 @@ module.exports = {
         this.guild = process.env.LOGGER_GUILD;
         this.channel = process.env.LOGGER_CHANNEL;
     },
-
     sendToLog(content) {
         global.CLIENT.guilds.fetch(this.guild)
             .then(guild =>
@@ -18,7 +17,6 @@ module.exports = {
             )
 
     },
-
     newCommand(interaction) {
         if (interaction.user.id == process.env.OWNER) return;
 
@@ -38,7 +36,6 @@ module.exports = {
 
         this.sendToLog({ embeds: [embed] })
     },
-
     async newServer(guild) {
         var embed = new EmbedBuilder()
             .setTitle("New Guild")

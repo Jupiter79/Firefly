@@ -1,5 +1,6 @@
 const { Events, EmbedBuilder } = require('discord.js');
 
+//eslint-disable-next-line
 let client = global.CLIENT;
 module.exports = {
     event: Events.MessageCreate,

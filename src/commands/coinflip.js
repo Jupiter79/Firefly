@@ -21,7 +21,7 @@ module.exports = {
         var headsTailsImage = "src/assets/heads_tails.png";
 
         if (!opponent) {
-            var embed = new EmbedBuilder()
+            let embed = new EmbedBuilder()
                 .setTitle(interaction.translation.name)
                 .setColor(0xf2ba00)
                 .setThumbnail("attachment://heads_tails.png")
@@ -31,7 +31,7 @@ module.exports = {
         } else {
             if (initiator == opponent) return interaction.reply({ content: interaction.translation.error, ephemeral: true });
 
-            var embed = new EmbedBuilder()
+            let embed = new EmbedBuilder()
                 .setTitle(interaction.translation.name)
                 .setColor(0xf2ba00)
                 .addFields(

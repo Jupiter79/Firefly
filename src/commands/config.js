@@ -151,7 +151,7 @@ module.exports = {
                         await interaction.reply(interaction.translation["welcome.no_defined"])
                     });
             } else if (subcommand == "define") {
-                var channel = interaction.options.getChannel("channel");
+                let channel = interaction.options.getChannel("channel");
 
                 if (channel.id == guild.welcome_channel) return await interaction.reply({ content: interaction.translation["welcome.already_defined"], ephemeral: true });
 
@@ -176,7 +176,7 @@ module.exports = {
                         await interaction.reply(interaction.translation["counting.no_defined"])
                     });
             } else if (subcommand == "define") {
-                var channel = interaction.options.getChannel("channel");
+                let channel = interaction.options.getChannel("channel");
 
                 if (channel.id == guild.counting_channel) return await interaction.reply({ content: interaction.translation["counting.already_defined"], ephemeral: true });
 
