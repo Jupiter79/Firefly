@@ -25,8 +25,8 @@ module.exports = {
             .then(async messages => {
                 await interaction
                     .reply(`Cleared ${messages.size} ${messages.size == 1 ? "message" : "messages"}! :bomb:`)
-                    .then(x => setTimeout(() => interaction.deleteReply(), 3000));
+                    .then(() => setTimeout(() => interaction.deleteReply(), 3000));
             })
-            .catch(err => interaction.reply({ content: interaction.translation.error, ephemeral: true }))
+            .catch(() => interaction.reply({ content: interaction.translation.error, ephemeral: true }))
     },
 };

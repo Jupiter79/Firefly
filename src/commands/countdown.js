@@ -73,7 +73,7 @@ module.exports = {
 
             if (date == false) return await interaction.reply({ content: interaction.translation.error_future, ephemeral: true });
 
-            var embed = new EmbedBuilder()
+            let embed = new EmbedBuilder()
                 .setTitle("Countdown")
                 .setColor(0xffffff)
                 .setTimestamp()
@@ -91,7 +91,7 @@ module.exports = {
                 [interaction.translation.events.birthday_firefly, getNext(13, 11)]
             ];
 
-            var embed = new EmbedBuilder()
+            let embed = new EmbedBuilder()
                 .setTitle(interaction.translation.default_countdowns)
                 .setColor(0xffffff)
                 .setTimestamp()
