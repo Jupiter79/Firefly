@@ -49,7 +49,7 @@ module.exports = {
             global.LANGUAGES[name] = require(__dirname + "/translations/" + langFile);
         })
 
-        global.LANGUAGES.list.filter(x => x != "default").forEach(lang => {
+        global.LANGUAGES.list.forEach(lang => {
             var sLang = global.LANGUAGES[lang];
 
             var events = Object.entries(sLang.events);
@@ -61,16 +61,18 @@ module.exports = {
                 global.EVENT_META[event[0]][lang] = event[1];
             })
 
-            commands.filter(x => Object.keys(x[1].meta).length > 0).forEach(command => {
-                var metas = Object.entries(command[1].meta);
-                if (!global.COMMAND_META[command[0]]) global.COMMAND_META[command[0]] = {}
+            if (lang != "default") {
+                commands.filter(x => Object.keys(x[1].meta).length > 0).forEach(command => {
+                    var metas = Object.entries(command[1].meta);
+                    if (!global.COMMAND_META[command[0]]) global.COMMAND_META[command[0]] = {}
 
-                metas.filter(x => x.length > 0).forEach(meta => {
-                    if (!global.COMMAND_META[command[0]][meta[0]]) global.COMMAND_META[command[0]][meta[0]] = {};
+                    metas.filter(x => x.length > 0).forEach(meta => {
+                        if (!global.COMMAND_META[command[0]][meta[0]]) global.COMMAND_META[command[0]][meta[0]] = {};
 
-                    global.COMMAND_META[command[0]][meta[0]][lang] = meta[1];
+                        global.COMMAND_META[command[0]][meta[0]][lang] = meta[1];
+                    })
                 })
-            })
+            }
         })
     },
     getUsedLanguage(interaction) {

@@ -1,19 +1,16 @@
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
-    client: null,
     guild: null,
     channel: null,
 
-    init(client) {
-        this.client = client;
-
+    init() {
         this.guild = process.env.LOGGER_GUILD;
         this.channel = process.env.LOGGER_CHANNEL;
     },
 
     sendToLog(content) {
-        this.client.guilds.fetch(this.guild)
+        global.CLIENT.guilds.fetch(this.guild)
             .then(guild =>
                 guild.channels.fetch(this.channel).then(channel =>
                     channel.send(content)
