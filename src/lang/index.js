@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const StringSimilarity = require("string-similarity");
 
 global.LANGUAGES = {};
 
@@ -85,5 +86,27 @@ module.exports = {
 
             return global.LANGUAGES.list.includes(usedLanguage) ? global.LANGUAGES[usedLanguage] : global.LANGUAGES["default"];
         }
+    },
+    getBestSearchResults(userInput, limit) {
+        let matches = global.VALID_LANGUAGES
+            .map(x => {
+                let nameComparison = StringSimilarity.compareTwoStrings(userInput, x.name);
+                let valueComparison = StringSimilarity.compareTwoStrings(userInput, x.value);
+
+                let name = x.name.split(" ").slice(1).join(" ");
+
+                return [x.value, Math.max(nameComparison, valueComparison), name]
+            })
+            .filter(x => x[1] != 0)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, limit)
+            .map(x => {
+                return { name: x[2], value: x[0] };
+            })
+
+        return matches;
+    },
+    getCurrentLanguageName(interaction) {
+        return global.VALID_LANGUAGES.find(x => x.value == interaction.dbGuild.language).name;
     }
 }

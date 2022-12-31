@@ -3,6 +3,8 @@ const { SlashCommandBuilder, PermissionFlagsBits, ChannelType } = require('disco
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
 
+const Language = require("../lang/index.js");
+
 const name = "config";
 module.exports = {
     data: new SlashCommandBuilder()
@@ -117,27 +119,28 @@ module.exports = {
             if (subcommand == "set") {
                 var language = interaction.options.getString("language");
 
-                var languageName = global.VALID_LANGUAGES.find(x => x.value == language)?.name;
+                let match = Language.getBestSearchResults(language, 1)[0];
 
-                if (languageName) {
-                    if (language == guild.language) return interaction.reply({ content: interaction.translation["language.already"], ephemeral: true });
+                if (match) {
+                    let languageName = global.VALID_LANGUAGES.find(x => x.value == match.value).name;
+                    if (match.value == guild.language) return interaction.reply({ content: interaction.translation["language.already"], ephemeral: true });
                     else {
                         await prisma.guild.update({
                             where: {
                                 id: interaction.guild.id
                             },
                             data: {
-                                language: language
+                                language: match.value
                             }
                         });
 
-                        await interaction.reply(interaction.translation["language.success_set"].replace("{{language}}", `\`${languageName}\``));
+                        await interaction.reply(interaction.translation["language.success_set"].replace("{{language}}", languageName));
                     }
                 } else await interaction.reply(interaction.translation["language.invalid_lang"])
             } else if (subcommand == "list") {
                 await interaction.reply(global.VALID_LANGUAGES.map(x => `${x.name} => **${x.value}**`).join("\n"));
             } else if (subcommand == "view") {
-                await interaction.reply(interaction.translation["language.current_lang"].replace("{{lang}}", global.VALID_LANGUAGES.find(x => x.value == interaction.dbGuild.language).name))
+                await interaction.reply(interaction.translation["language.current_lang"].replace("{{lang}}", Language.getCurrentLanguageName(interaction)))
             }
         } else if (subcommandgroup == "welcome") {
             if (subcommand == "view") {
