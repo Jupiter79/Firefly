@@ -25,6 +25,7 @@ module.exports = {
                             option
                                 .setName("language")
                                 .setRequired(true)
+                                .setAutocomplete(true)
                                 .setDescription("The language you want the bot to speak in")
                                 .setDescriptionLocalizations(global.COMMAND_META[name]["language.set.language.description"])
                         )
