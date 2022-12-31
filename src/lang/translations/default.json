@@ -71,7 +71,7 @@
       "content": {
         "language.already": "This is already the language!",
         "language.success_set": "The language has been successfully set to {{language}}",
-        "language.invalid_lang": "This is an invalid language! Check the spelling (also uppercase or lowercase) and use the language code",
+        "language.invalid_lang": "No language was found from your input. Check the spelling!",
         "language.current_lang": "The current language is {{lang}}",
         "welcome.no_defined": "There's no defined welcome channel",
         "welcome.current_channel": "The current welcome-channel is {{channel}}",
