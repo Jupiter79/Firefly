@@ -58,7 +58,7 @@ module.exports = {
                 )
                 .addSubcommand(subcommand =>
                     subcommand
-                        .setName("define")
+                        .setName("set")
                         .setDescription("Define a channel in which new users should be greeted")
                         .setDescriptionLocalizations(global.COMMAND_META[name]["welcome.define.description"])
                         .addChannelOption(option =>
@@ -89,7 +89,7 @@ module.exports = {
                 )
                 .addSubcommand(subcommand =>
                     subcommand
-                        .setName("define")
+                        .setName("set")
                         .setDescription("Define a counting channel where the counting game can be played")
                         .setDescriptionLocalizations(global.COMMAND_META[name]["counting.define.description"])
                         .addChannelOption(option =>
@@ -154,7 +154,7 @@ module.exports = {
                         await prisma.guild.update({ where: { id: interaction.guild.id }, data: { welcome_channel: null } });
                         await interaction.reply(interaction.translation["welcome.no_defined"])
                     });
-            } else if (subcommand == "define") {
+            } else if (subcommand == "set") {
                 let channel = interaction.options.getChannel("channel");
 
                 if (channel.id == guild.welcome_channel) return await interaction.reply({ content: interaction.translation["welcome.already_defined"], ephemeral: true });
@@ -179,7 +179,7 @@ module.exports = {
                         await prisma.guild.update({ where: { id: interaction.guild.id }, data: { counting_channel: null } });
                         await interaction.reply(interaction.translation["counting.no_defined"])
                     });
-            } else if (subcommand == "define") {
+            } else if (subcommand == "set") {
                 let channel = interaction.options.getChannel("channel");
 
                 if (channel.id == guild.counting_channel) return await interaction.reply({ content: interaction.translation["counting.already_defined"], ephemeral: true });
