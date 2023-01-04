@@ -24,29 +24,52 @@ module.exports = {
         var language = global.VALID_LANGUAGES.find(x => x.value == langCode).name;
 
         var embed = new EmbedBuilder()
-            .setTitle("Executed Command")
-            .setColor(0x00ff00)
-            .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() })
-            .addFields(
-                { name: "Guild", value: `**ID**: ${interaction.guild.id}\n**Name**: ${interaction.guild.name}` },
-                { name: "Command", value: `\`${interaction.toString()}\`` },
-                { name: "Language", value: `\`${language}\`` }
-            )
+            .setTitle(`Executed Command (${interaction.guild ? "Guild" : "Private"})`)
+            .setColor(0x20d4bf)
+            .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() });
+
+        if (interaction.guild) embed.addFields({ name: "Guild", value: `**ID**: ${interaction.guild.id}\n**Name**: ${interaction.guild.name}` });
+
+        embed.addFields(
+            { name: "Command", value: `\`${interaction.toString()}\`` },
+            { name: "Language", value: `\`${language}\`` }
+        )
             .setTimestamp();
 
         this.sendToLog({ embeds: [embed] })
     },
     async newServer(guild) {
         var embed = new EmbedBuilder()
-            .setTitle("New Guild")
-            .setColor(0x20d4bf)
-            .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
+            .setTitle("Joined Guild")
+            .setColor(0x13e000)
+            .setAuthor({ name: guild.name })
 
         await guild.fetchOwner().then(owner => {
             embed.addFields(
                 { name: "Owner", value: owner.user.tag }
             )
         })
+
+        embed.addFields(
+            { name: "Members", value: guild.memberCount.toString(), inline: true },
+            { name: "Preferred Language", value: guild.preferredLocale, inline: true },
+            { name: "ID", value: guild.id }
+        )
+            .setTimestamp();
+
+        this.sendToLog({ embeds: [embed] })
+    },
+    async leftServer(guild) {
+        var embed = new EmbedBuilder()
+            .setTitle("Left Guild")
+            .setColor(0x8c0900)
+            .setAuthor({ name: guild.name })
+
+        await global.CLIENT.users.fetch(guild.ownerId).then(owner => {
+            embed.addFields(
+                { name: "Owner", value: owner.tag }
+            )
+        }).catch();
 
         embed.addFields(
             { name: "Members", value: guild.memberCount.toString(), inline: true },
