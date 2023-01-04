@@ -14,7 +14,7 @@ module.exports = {
 
         if (guild?.welcome_channel) {
             member.guild.channels.fetch(guild.welcome_channel)
-                .then(async c => c.send(LANG[await Database.getGuildLanguage(member.guild)].replace("{{user}}", member.toString()).replace("{{guild}}", `**${member.guild.name}**`)))
+                .then(async c => c.send(LANG[await Database.getGuildLanguage(member.guild, true)].replace("{{user}}", member.toString()).replace("{{guild}}", `**${member.guild.name}**`)))
                 .catch(() => prisma.guild.update({ where: { id: member.guild.id }, data: { welcome_channel: null } }))
         }
     }

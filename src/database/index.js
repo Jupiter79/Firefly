@@ -12,7 +12,7 @@ module.exports = {
     async fetchEntry(guild) {
         return await prisma.guild.findUnique({
             where: { id: guild.id }
-        }) 
+        })
     },
     async getGuild(interaction) {
         var entry = await this.fetchEntry(interaction.guild);
@@ -21,11 +21,11 @@ module.exports = {
 
         return entry;
     },
-    async getGuildLanguage(guild) {
+    async getGuildLanguage(guild, usDefault = false) {
         var entry = await this.fetchEntry(guild);
 
         if (!entry) entry = await this.createGuild(guild);
 
-        return entry.language;
+        return usDefault ? (entry.language == "en" ? "default" : entry.language) : entry.language;
     }
 }
