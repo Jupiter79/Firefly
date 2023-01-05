@@ -16,7 +16,7 @@ module.exports = {
             return;
         }
 
-        if (interaction.guild) interaction.dbGuild = await Database.getGuild(interaction);
+        if (interaction.guild) interaction.dbGuild = await Database.getGuildFromInteraction(interaction);
 
         var usedLanguage = Lang.getUsedLanguage(interaction);
         
