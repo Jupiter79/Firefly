@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 
 module.exports = {
     guild: null,
@@ -79,5 +79,22 @@ module.exports = {
             .setTimestamp();
 
         this.sendToLog({ embeds: [embed] })
+    },
+    error(message, stack) {
+        let now = new Date()
+
+        let embed = new EmbedBuilder()
+            .setTitle("ERROR")
+            .setColor(0x000000)
+            .setTimestamp()
+            .addFields(
+                { name: "Message", value: message.toString() },
+                { name: "Exact time", value: `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}.${now.getMilliseconds()} / ${now.getDate()}.${now.getMonth() + 1}.${now.getFullYear()}`, inline: true },
+                { name: "Timestamp", value: now.getTime().toString(), inline: true }
+            );
+
+        const attachment = new AttachmentBuilder(Buffer.from(stack), { name: `error_${now.getTime()}.txt` })
+
+        this.sendToLog({ content: `<@${process.env.OWNER}>`, embeds: [embed], files: [attachment] })
     }
 }
