@@ -14,10 +14,17 @@ module.exports = {
             where: { id: guild.id }
         })
     },
-    async getGuild(interaction) {
+    async getGuildFromInteraction(interaction) {
         var entry = await this.fetchEntry(interaction.guild);
 
         if (!entry) entry = await this.createGuild(interaction.guild);
+
+        return entry;
+    },
+    async getGuild(guild) {
+        var entry = await this.fetchEntry(guild);
+
+        if (!entry) entry = await this.createGuild(guild);
 
         return entry;
     },

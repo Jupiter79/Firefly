@@ -8,9 +8,7 @@ const LANG = global.EVENT_META["greetUser"];
 module.exports = {
     event: Events.GuildMemberAdd,
     async handle(member) {
-        var guild = await prisma.guild.findUnique({
-            where: { id: member.guild.id }
-        })
+        var guild = await Database.getGuild(member.guild);
 
         if (guild?.welcome_channel) {
             member.guild.channels.fetch(guild.welcome_channel)

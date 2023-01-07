@@ -9,9 +9,11 @@ const intents = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, Gatew
 const client = new Client({ intents: intents });
 global.CLIENT = client;
 
+require("./other/errorHandler.js");
+
 require("./lang/index.js").init();
 require("./web/index.js");
-require("./logger/index.js").init(client);
+require("./logger/index.js").init();
 
 client.events = new Collection();
 client.commands = new Collection();
