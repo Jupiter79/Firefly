@@ -18,6 +18,6 @@ module.exports = {
             .setImage(client.user.displayAvatarURL({ size: 2048 }))
             .setTimestamp();
 
-        if (guild.systemChannel) guild.systemChannel.send({ embeds: [embed] }).catch();
+        if (guild.systemChannel) guild.systemChannel.send({ embeds: [embed] }).catch(() => {});
     }
 }
