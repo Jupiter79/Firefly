@@ -115,7 +115,19 @@ module.exports = {
         );
         const attachment = new AttachmentBuilder(image, { name: 'einsatz.png' })
 
-        let message = await interaction.reply({ files: [attachment], fetchReply: true });
+        let feuerwehr = interaction.options.getString("feuerwehr");
+        let feuerwehr_typ = interaction.options.getString("feuerwehr_typ");
+        let stichwort = interaction.options.getString("stichwort");
+
+        if (feuerwehr_typ == "FF") feuerwehr_typ = "Feuerwehr";
+        else if (feuerwehr_typ == "BTF") feuerwehr_typ = "Betriebsfeuerwehr";
+        else if (feuerwehr_typ == "BF") feuerwehr_typ = "Berufsfeuerwehr";
+
+        if (stichwort.startsWith("B") || stichwort.startsWith("F")) stichwort = "Brandeinsatz";
+        else if (stichwort.startsWith("T")) stichwort = "Technischer Einsatz";
+        else return interaction.reply({ content: "Ungültiges Stichwort! Muss mit **B**, **T**, oder **F** starten!", ephemeral: true })
+
+        let message = await interaction.reply({ content: `<@1062628839408275476>\n**Hier LAWZ Einsatzmeldung für die ${feuerwehr_typ} ${feuerwehr} ${stichwort} ENDE**`, files: [attachment], fetchReply: true });
 
         await message.react("✅");
         await message.react("❌");
