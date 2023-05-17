@@ -1,12 +1,12 @@
 require("dotenv").config();
 
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const {Client, GatewayIntentBits, Collection} = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
 const intents = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent];
 
-const client = new Client({ intents: intents });
+const client = new Client({intents: intents});
 global.CLIENT = client;
 
 require("./lang/index.js").init();
@@ -29,7 +29,7 @@ for (const file of eventsFiles) {
 
     if ('event' in event && 'handle' in event) {
         let eventName = file.split(".")[0];
-        
+
         client.events.set(eventName, event);
     } else {
         console.log(`[WARNING] The event at ${filePath} is missing a required "event" or "handle" property.`);
