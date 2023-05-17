@@ -104,5 +104,5 @@ module.exports = {
 
         await interaction.reply({ files: [attachment] })
     },
-    guild: "787840495292383282"
+    guild: "1037102790197125212"
 };
