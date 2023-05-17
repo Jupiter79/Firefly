@@ -127,7 +127,7 @@ module.exports = {
         else if (stichwort.startsWith("T")) stichwort = "Technischer Einsatz";
         else return interaction.reply({ content: "Ungültiges Stichwort! Muss mit **B**, **T**, oder **F** starten!", ephemeral: true })
 
-        let message = await interaction.reply({ content: `<@1062628839408275476>\n**Hier LAWZ Einsatzmeldung für die ${feuerwehr_typ} ${feuerwehr} ${stichwort} ENDE**`, files: [attachment], fetchReply: true });
+        let message = await interaction.reply({ content: `<@&1062628839408275476>\n**Hier LAWZ Einsatzmeldung für die ${feuerwehr_typ} ${feuerwehr} ${stichwort} ENDE**`, files: [attachment], fetchReply: true });
 
         await message.react("✅");
         await message.react("❌");
