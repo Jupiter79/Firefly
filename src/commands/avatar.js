@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const {SlashCommandBuilder} = require('discord.js');
 
 const name = "avatar";
 module.exports = {
@@ -19,16 +19,16 @@ module.exports = {
                 .setDescription("The file format you want to have the avatar in")
                 .setDescriptionLocalizations(global.COMMAND_META[name]["extension.description"])
                 .addChoices(
-                    { name: "PNG", value: "jpg" },
-                    { name: "JPG", value: "jpg" },
-                    { name: "GIF", value: "gif" },
-                    { name: "WEBP", value: "webp" },
-                    { name: "JPEG", value: "jpeg" }
+                    {name: "PNG", value: "jpg"},
+                    {name: "JPG", value: "jpg"},
+                    {name: "GIF", value: "gif"},
+                    {name: "WEBP", value: "webp"},
+                    {name: "JPEG", value: "jpeg"}
                 )
         ),
     async execute(interaction) {
-        var extension = interaction.options.getString("extension") ?? "png";
-        var avatarURL = interaction.options.getUser("target").displayAvatarURL({ size: 2048, extension: extension });
+        let extension = interaction.options.getString("extension") ?? "png";
+        var avatarURL = interaction.options.getUser("target").displayAvatarURL({size: 2048, extension: extension});
 
         await interaction.reply(avatarURL);
     },

@@ -1,0 +1,108 @@
+const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
+
+const { createCanvas, loadImage } = require('canvas');
+
+const name = "einsatz";
+
+function getCurrentDateTime(withSeconds) {
+    const now = new Date();
+
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Monate sind nullbasiert
+    const year = now.getFullYear();
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const dateTime = `${day}.${month}.${year} ${hours}:${minutes}` + (withSeconds ? `:${seconds}` : "");
+
+    return dateTime;
+}
+
+async function makeEinsatzImage(alarmTyp, stichwort, feuerwehr, straße, ort, gemeinde) {
+    let image = await loadImage("src/assets/Einsatz_blank.png");
+
+    const canvas = createCanvas(image.width, image.height);
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(image, 0, 0);
+
+    ctx.fillStyle = "#6A6B6B";
+    ctx.font = `48px Arial`;
+    ctx.textBaseline = 'middle';
+    ctx.fillText(getCurrentDateTime(false), 245, 197);
+
+    ctx.fillStyle = "black";
+    ctx.font = `50px Arial`;
+    ctx.fillText(`${alarmTyp} für ${feuerwehr}`, 55, 315);
+    ctx.fillText(`LAWZ Einsatzmeldung:`, 55, 315 + (55 * 1));
+    ctx.fillText(stichwort, 55, 315 + (55 * 2));
+    ctx.fillText(straße, 55, 315 + (55 * 3));
+    ctx.fillText(`${ort} - ${gemeinde}`, 55, 315 + (55 * 4));
+    ctx.fillText(getCurrentDateTime(true), 55, 315 + (55 * 5));
+
+    return canvas.toBuffer();
+}
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName(name)
+        .setDescription('Generiert einen Einsatz')
+        .addStringOption(option =>
+            option
+                .setName("alarmtyp")
+                .setDescription("Wie alarmiert werden soll")
+                .addChoices(
+                    { name: "Stiller Alarm", value: "Stiller Alarm" },
+                    { name: "Sirenenalarm", value: "Sirenenalarm" }
+                )
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("stichwort")
+                .setDescription("Mit welchem Stichwort alarmiert werden soll")
+                .setMaxLength(20)
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("feuerwehr")
+                .setDescription("Welche Feuerwehr alarmiert werden soll")
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("straße")
+                .setDescription("Die Straße, wo der Einsatz ist")
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("ort")
+                .setDescription("Der Ort, wo der Einsatz ist")
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option
+                .setName("gemeinde")
+                .setDescription("Die Gemeinde, wo der Einsatz ist")
+                .setRequired(true)
+        )
+    ,
+    async execute(interaction) {
+        let image = await makeEinsatzImage(
+            interaction.options.getString("alarmtyp"),
+            interaction.options.getString("stichwort"),
+            interaction.options.getString("feuerwehr"),
+            interaction.options.getString("straße"),
+            interaction.options.getString("ort"),
+            interaction.options.getString("gemeinde"),
+        );
+        const attachment = new AttachmentBuilder(image, { name: 'einsatz.png' })
+
+        await interaction.reply({ files: [attachment] })
+    },
+    guild: "1037102790197125212"
+};
