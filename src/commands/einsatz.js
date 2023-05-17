@@ -20,7 +20,8 @@ function getCurrentDateTime(withSeconds) {
     return dateTime;
 }
 
-async function makeEinsatzImage(alarmTyp, stichwort, feuerwehr, straße, ort, gemeinde) {
+const lineSpacing = 60;
+async function makeEinsatzImage(alarmTyp, stichwort, feuerwehr_typ, feuerwehr, straße, ort, gemeinde) {
     let image = await loadImage("src/assets/Einsatz_blank.png");
 
     const canvas = createCanvas(image.width, image.height);
@@ -35,12 +36,12 @@ async function makeEinsatzImage(alarmTyp, stichwort, feuerwehr, straße, ort, ge
 
     ctx.fillStyle = "black";
     ctx.font = `50px Arial`;
-    ctx.fillText(`${alarmTyp} für ${feuerwehr}`, 55, 315);
-    ctx.fillText(`LAWZ Einsatzmeldung:`, 55, 315 + (55 * 1));
-    ctx.fillText(stichwort, 55, 315 + (55 * 2));
-    ctx.fillText(straße, 55, 315 + (55 * 3));
-    ctx.fillText(`${ort} - ${gemeinde}`, 55, 315 + (55 * 4));
-    ctx.fillText(getCurrentDateTime(true), 55, 315 + (55 * 5));
+    ctx.fillText(`${alarmTyp} für ${feuerwehr_typ} ${feuerwehr}`, 55, 315);
+    ctx.fillText(`LAWZ Einsatzmeldung:`, 55, 315 + (lineSpacing * 1));
+    ctx.fillText(stichwort.toUpperCase(), 55, 315 + (lineSpacing * 2));
+    ctx.fillText(straße, 55, 315 + (lineSpacing * 3));
+    ctx.fillText(`${ort} - ${gemeinde}`, 55, 315 + (lineSpacing * 4));
+    ctx.fillText(getCurrentDateTime(true), 55, 315 + (lineSpacing * 5));
 
     return canvas.toBuffer();
 }
@@ -68,8 +69,19 @@ module.exports = {
         )
         .addStringOption(option =>
             option
+                .setName("feuerwehr_typ")
+                .setDescription("Welche Art von Feuerwehr alarmiert werden soll")
+                .setRequired(true)
+                .addChoices(
+                    { name: "Freiwillige Feuerwehr", value: "FF" },
+                    { name: "Berufsfeuerwehr", value: "BF" },
+                    { name: "Betriebsfeuerwehr", value: "BTF" }
+                )
+        )
+        .addStringOption(option =>
+            option
                 .setName("feuerwehr")
-                .setDescription("Welche Feuerwehr alarmiert werden soll")
+                .setDescription("Welche Feuerwehr alarmiert werden soll (ohne FF, BF oder BTF!)")
                 .setRequired(true)
         )
         .addStringOption(option =>
@@ -95,6 +107,7 @@ module.exports = {
         let image = await makeEinsatzImage(
             interaction.options.getString("alarmtyp"),
             interaction.options.getString("stichwort"),
+            interaction.options.getString("feuerwehr_typ"),
             interaction.options.getString("feuerwehr"),
             interaction.options.getString("straße"),
             interaction.options.getString("ort"),
@@ -102,7 +115,10 @@ module.exports = {
         );
         const attachment = new AttachmentBuilder(image, { name: 'einsatz.png' })
 
-        await interaction.reply({ files: [attachment] })
+        let message = await interaction.reply({ files: [attachment], fetchReply: true });
+
+        await message.react("✅");
+        await message.react("❌");
     },
     guild: "1037102790197125212"
 };
